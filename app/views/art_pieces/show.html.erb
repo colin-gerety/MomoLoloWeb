@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Artist:</strong>
+  <%= @art_piece.artist %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @art_piece.title %>
+</p>
+
+<p>
+  <strong>Media:</strong>
+  <%= @art_piece.media %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @art_piece.price %>
+</p>
+
+<p>
+  <strong>Needs label:</strong>
+  <%= @art_piece.needs_label %>
+</p>
+
+<p>
+  <strong>Currently hanging:</strong>
+  <%= @art_piece.currently_hanging %>
+</p>
+
+<p>
+  <strong>Momo percent:</strong>
+  <%= @art_piece.momo_percent %>
+</p>
+
+<p>
+  <strong>Artist percent:</strong>
+  <%= @art_piece.artist_percent %>
+</p>
+
+<p>
+  <strong>Other percent:</strong>
+  <%= @art_piece.other_percent %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @art_piece.note %>
+</p>
+
+<%= link_to 'Edit', edit_art_piece_path(@art_piece) %> |
+<%= link_to 'Back', art_pieces_path %>

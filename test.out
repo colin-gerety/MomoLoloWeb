@@ -1,0 +1,18 @@
+--------------- models/barista ------
+Run options: --seed 57023
+
+# Running:
+
+.
+
+Finished in 0.338153s, 2.9572 runs/s, 11.8290 assertions/s.
+1 runs, 4 assertions, 0 failures, 0 errors, 0 skips
+--------------- models/art_piece ------
+Run options: --seed 48017
+
+# Running:
+
+..
+
+Finished in 0.258194s, 7.7461 runs/s, 27.1114 assertions/s.
+2 runs, 7 assertions, 0 failures, 0 errors, 0 skips

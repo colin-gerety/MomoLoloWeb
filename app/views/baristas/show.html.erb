@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First:</strong>
+  <%= @barista.first %>
+</p>
+
+<p>
+  <strong>Last:</strong>
+  <%= @barista.last %>
+</p>
+
+<p>
+  <strong>Currently working:</strong>
+  <%= @barista.currently_working %>
+</p>
+
+<%= link_to 'Edit', edit_barista_path(@barista) %> |
+<%= link_to 'Back', baristas_path %>

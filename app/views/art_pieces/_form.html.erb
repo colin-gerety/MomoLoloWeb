@@ -1,0 +1,67 @@
+<%= form_with(model: art_piece, local: true) do |form| %>
+  <% if art_piece.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(art_piece.errors.count, "error") %> prohibited this art_piece from being saved:</h2>
+
+      <ul>
+      <% art_piece.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :artist_id %>
+    <%= form.text_field :artist_id, id: :art_piece_artist_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :art_piece_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :media %>
+    <%= form.text_field :media, id: :art_piece_media %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: :art_piece_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :needs_label %>
+    <%= form.check_box :needs_label, id: :art_piece_needs_label %>
+  </div>
+
+  <div class="field">
+    <%= form.label :currently_hanging %>
+    <%= form.check_box :currently_hanging, id: :art_piece_currently_hanging %>
+  </div>
+
+  <div class="field">
+    <%= form.label :momo_percent %>
+    <%= form.number_field :momo_percent, id: :art_piece_momo_percent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :artist_percent %>
+    <%= form.number_field :artist_percent, id: :art_piece_artist_percent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :other_percent %>
+    <%= form.number_field :other_percent, id: :art_piece_other_percent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :note %>
+    <%= form.text_area :note, id: :art_piece_note %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

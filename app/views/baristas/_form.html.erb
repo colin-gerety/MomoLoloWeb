@@ -1,0 +1,32 @@
+<%= form_with(model: barista, local: true) do |form| %>
+  <% if barista.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(barista.errors.count, "error") %> prohibited this barista from being saved:</h2>
+
+      <ul>
+      <% barista.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :first %>
+    <%= form.text_field :first, id: :barista_first %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last %>
+    <%= form.text_field :last, id: :barista_last %>
+  </div>
+
+  <div class="field">
+    <%= form.label :currently_working %>
+    <%= form.check_box :currently_working, id: :barista_currently_working %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

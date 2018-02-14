@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @image.image %>
+</p>
+
+<p>
+  <strong>Display in ui:</strong>
+  <%= @image.display_in_ui %>
+</p>
+
+<p>
+  <strong>Picturable:</strong>
+  <%= @image.picturable %>
+</p>
+
+<%= link_to 'Edit', edit_image_path(@image) %> |
+<%= link_to 'Back', images_path %>

@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  artist: one
+  title: MyString
+  media: MyString
+  price: 1.5
+  needs_label: false
+  currently_hanging: false
+  momo_percent: 1
+  artist_percent: 1
+  other_percent: 1
+  note: MyText
+
+two:
+  artist: two
+  title: MyString
+  media: MyString
+  price: 1.5
+  needs_label: false
+  currently_hanging: false
+  momo_percent: 1
+  artist_percent: 1
+  other_percent: 1
+  note: MyText
