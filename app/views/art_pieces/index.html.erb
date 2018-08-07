@@ -1,28 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Art Pieces</h1>
+<h1>Listing Art Pieces</h1>
 
-<table>
+<table class="index">
   <thead>
     <tr>
-      <th>Artist</th>
       <th>Title</th>
       <th>Media</th>
       <th>Price</th>
       <th>Needs label</th>
       <th>Currently hanging</th>
-      <th>Momo percent</th>
-      <th>Artist percent</th>
-      <th>Other percent</th>
+      <th>Momo %</th>
+      <th>Artist %</th>
+      <th>Other %</th>
       <th>Note</th>
-      <th colspan="3"></th>
+      <th>Artist</th>
+      <th colspan="3" class="action"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @art_pieces.each do |art_piece| %>
       <tr>
-        <td><%= art_piece.artist %></td>
         <td><%= art_piece.title %></td>
         <td><%= art_piece.media %></td>
         <td><%= art_piece.price %></td>
@@ -32,9 +31,10 @@
         <td><%= art_piece.artist_percent %></td>
         <td><%= art_piece.other_percent %></td>
         <td><%= art_piece.note %></td>
-        <td><%= link_to 'Show', art_piece %></td>
-        <td><%= link_to 'Edit', edit_art_piece_path(art_piece) %></td>
-        <td><%= link_to 'Destroy', art_piece, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= art_piece.artist.name %></td>
+        <td class="action"><%= link_to 'Show', art_piece %></td>
+        <td class="action"><%= link_to 'Edit', edit_art_piece_path(art_piece) %></td>
+        <td class="action"><%= link_to 'Destroy', art_piece, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -42,4 +42,4 @@
 
 <br>
 
-<%= link_to 'New Art Piece', new_art_piece_path %>
+<%= link_to 'New Art piece', new_art_piece_path %>

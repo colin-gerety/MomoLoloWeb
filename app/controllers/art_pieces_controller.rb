@@ -4,7 +4,7 @@ class ArtPiecesController < ApplicationController
   # GET /art_pieces
   # GET /art_pieces.json
   def index
-    @art_pieces = ArtPiece.all
+    @art_pieces = ArtPiece.joins(:artist).order('art_pieces.currently_hanging desc, artists.name asc')
   end
 
   # GET /art_pieces/1
@@ -69,6 +69,6 @@ class ArtPiecesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def art_piece_params
-      params.require(:art_piece).permit(:artist_id, :title, :media, :price, :needs_label, :currently_hanging, :momo_percent, :artist_percent, :other_percent, :note)
+      params.require(:art_piece).permit(:title, :media, :price, :needs_label, :currently_hanging, :momo_percent, :artist_percent, :other_percent, :note, :artist_id, :image)
     end
 end

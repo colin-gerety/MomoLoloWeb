@@ -1,10 +1,10 @@
-<%= form_with(model: art_piece, local: true) do |form| %>
-  <% if art_piece.errors.any? %>
+<%= form_for @art_piece, :html => {:multipart => true} do |f| %>
+  <% if @art_piece.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(art_piece.errors.count, "error") %> prohibited this art_piece from being saved:</h2>
+      <h2><%= pluralize(@art_piece.errors.count, "error") %> prohibited this art_piece from being saved:</h2>
 
       <ul>
-      <% art_piece.errors.full_messages.each do |message| %>
+      <% @art_piece.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -12,56 +12,67 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :artist_id %>
-    <%= form.text_field :artist_id, id: :art_piece_artist_id %>
+    <%= f.label 'Artist:' %>
+    <%= f.collection_select(:artist_id, Artist.all, :id, :name, :prompt => 'Please select artist') %>
+  </div>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :media %>
+    <%= f.text_field :media %>
+  </div>
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.text_field :price, :value => (number_with_precision(f.object.price, :precision => 2) || 0), class: 'numeric_input' %>
   </div>
 
+  <div class="field_group">
+    <div class="field">
+      <%= f.check_box :needs_label %>
+      <%= f.label :needs_label %>
+    </div>
+    <div class="field">
+      <%= f.check_box :currently_hanging %>
+      <%= f.label "Currently Hanging?" %>
+    </div>
+  </div>
+  <div class="field_group">
+    <div class="field">
+      <%= f.label :momo_percent %>
+      <%= f.number_field :momo_percent, class: 'numeric_input' %>
+    </div>
+    <div class="field">
+      <%= f.label :artist_percent %>
+      <%= f.number_field :artist_percent, class: 'numeric_input' %>
+    </div>
+    <div class="field">
+      <%= f.label :other_percent %>
+      <%= f.number_field :other_percent, class: 'numeric_input' %>
+    </div>
+  </div>
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :art_piece_title %>
+    <%= f.label :note %>
+    <%= f.text_field :note %>
   </div>
 
-  <div class="field">
-    <%= form.label :media %>
-    <%= form.text_field :media, id: :art_piece_media %>
+  <div class="image_area">
+    <div>
+      <%= image_tag @art_piece.image.image_url(:thumb).to_s %>
+    </div>
+    <div class="field">
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+    </div>
   </div>
-
   <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price, id: :art_piece_price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :needs_label %>
-    <%= form.check_box :needs_label, id: :art_piece_needs_label %>
-  </div>
-
-  <div class="field">
-    <%= form.label :currently_hanging %>
-    <%= form.check_box :currently_hanging, id: :art_piece_currently_hanging %>
-  </div>
-
-  <div class="field">
-    <%= form.label :momo_percent %>
-    <%= form.number_field :momo_percent, id: :art_piece_momo_percent %>
-  </div>
-
-  <div class="field">
-    <%= form.label :artist_percent %>
-    <%= form.number_field :artist_percent, id: :art_piece_artist_percent %>
-  </div>
-
-  <div class="field">
-    <%= form.label :other_percent %>
-    <%= form.number_field :other_percent, id: :art_piece_other_percent %>
-  </div>
-
-  <div class="field">
-    <%= form.label :note %>
-    <%= form.text_area :note, id: :art_piece_note %>
+    <%= f.label 'Artist:' %>
+    <%= f.collection_select(:artist_id, Artist.all, :id, :name, :prompt => 'Please select artist') %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= f.submit %>
   </div>
 <% end %>
+
