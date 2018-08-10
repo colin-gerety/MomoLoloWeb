@@ -1,0 +1,66 @@
+<div class="art_piece">
+  <div class="image_area">
+    <div>
+      <%= link_to(image_tag(art_piece.image_url(:thumb).to_s), art_piece) %>
+    </div>
+  </div>
+ 
+  <div>
+    <strong>Artist:</strong>
+    <%= art_piece.artist.name %>
+  </div>
+
+  <div>
+    <strong>Title:</strong>
+    <%= art_piece.title %>
+  </div>
+
+  <div>
+    <strong>Media:</strong>
+    <%= art_piece.media %>
+  </div>
+
+  <div>
+    <strong>Price:</strong>
+    <%= number_with_precision(art_piece.price, :precision => 2) %>
+  </div>
+
+  <div class="field_group">
+    <div>
+      <strong>Needs label:</strong>
+      <%= art_piece.needs_label %>
+    </div>
+
+    <div>
+      <strong>Currently hanging:</strong>
+      <%= art_piece.currently_hanging %>
+    </div>
+  </div>
+
+  <div class="field_group">
+    <div>
+      <strong>Momo percent:</strong>
+      <%= art_piece.momo_percent %>
+    </div>
+    <div>
+      <strong>Artist percent:</strong>
+      <%= art_piece.artist_percent %>
+    </div>
+<% if !art_piece.other_percent.blank? %>
+    <div>
+      <strong>Other percent:</strong>
+      <%= art_piece.other_percent %>
+    </div>
+<% end %>
+  </div>
+  
+<% if !art_piece.note.blank? %>
+  <div>
+    <strong>Notes:</strong>
+    <%= art_piece.note %>
+  </div>
+<% end %>
+  <%= link_to 'Edit', edit_art_piece_path(art_piece) %> 
+
+
+</div>

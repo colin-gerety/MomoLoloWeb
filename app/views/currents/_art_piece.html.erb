@@ -1,0 +1,29 @@
+<div class="art_piece">
+  <div class="image_area">
+    <div>
+      <%= link_to(image_tag(art_piece.image_url(:thumb).to_s), art_piece) %>
+    </div>
+  </div>
+ 
+  <div>
+    <strong>Artist:</strong>
+    <%= art_piece.artist.name %>
+  </div>
+
+  <div>
+    <strong>Title:</strong>
+    <%= art_piece.title %>
+  </div>
+
+  <div>
+    <strong>Media:</strong>
+    <%= art_piece.media %>
+  </div>
+
+  <div>
+    <strong>Price:</strong>
+    <%= number_with_precision(art_piece.price, :precision => 2) %>
+  </div>
+  <%= link_to 'Edit', edit_art_piece_path(art_piece) %>
+</div>
+

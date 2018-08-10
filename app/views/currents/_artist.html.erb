@@ -1,0 +1,14 @@
+<div class="gallery_artist">
+  <div class="field">
+    <strong>Artist: <%= link_to artist.name, artist %></strong>
+  </div>
+
+</div>
+<% if !artist.art_pieces.blank? %>
+  <div class="gallery">
+    <% artist.art_pieces.each do |art_piece| %>
+     <%= render partial: "art_piece", locals: { art_piece: art_piece } %>
+    <% end %>
+  </div>
+<% end %>
+

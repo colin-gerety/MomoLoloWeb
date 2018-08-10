@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<% if @current.current_artists.blank? %>
+<%   @current.current_artists.each |artist| %>
+       <div><%= artist.name  %></div> 
+<%   end %>
+<% end %>
+
+<%= link_to 'Back', currents_path %>
+

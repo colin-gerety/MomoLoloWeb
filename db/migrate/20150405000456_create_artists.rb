@@ -6,7 +6,7 @@ class CreateArtists < ActiveRecord::Migration[5.1]
       t.string :web_site
       t.string :email
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

@@ -1,48 +1,49 @@
 require 'test_helper'
 
-class ArtistsControllerTest < ActionDispatch::IntegrationTest
+class ArtistsControllerTest < ActionController::TestCase
   setup do
     @artist = artists(:one)
   end
 
   test "should get index" do
-    get artists_url
+    get :index
     assert_response :success
+    assert_not_nil assigns(:artists)
   end
 
   test "should get new" do
-    get new_artist_url
+    get :new
     assert_response :success
   end
 
   test "should create artist" do
     assert_difference('Artist.count') do
-      post artists_url, params: { artist: { email: @artist.email, name: @artist.name, phone: @artist.phone, web_site: @artist.web_site } }
+      post :create, artist: { email: @artist.email, name: @artist.name, phone: @artist.phone, web_site: @artist.web_site }
     end
 
-    assert_redirected_to artist_url(Artist.last)
+    assert_redirected_to artist_path(assigns(:artist))
   end
 
   test "should show artist" do
-    get artist_url(@artist)
+    get :show, id: @artist
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_artist_url(@artist)
+    get :edit, id: @artist
     assert_response :success
   end
 
   test "should update artist" do
-    patch artist_url(@artist), params: { artist: { email: @artist.email, name: @artist.name, phone: @artist.phone, web_site: @artist.web_site } }
-    assert_redirected_to artist_url(@artist)
+    patch :update, id: @artist, artist: { email: @artist.email, name: @artist.name, phone: @artist.phone, web_site: @artist.web_site }
+    assert_redirected_to artist_path(assigns(:artist))
   end
 
   test "should destroy artist" do
     assert_difference('Artist.count', -1) do
-      delete artist_url(@artist)
+      delete :destroy, id: @artist
     end
 
-    assert_redirected_to artists_url
+    assert_redirected_to artists_path
   end
 end

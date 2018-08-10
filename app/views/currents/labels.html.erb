@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Labels</h1>
+<% if !@art_pieces.blank? %>
+<%   @art_pieces.each do |art_piece| %>
+     <%= render partial: "label", locals: { art_piece: art_piece } %>
+<%   end %>
+<% end %>
+
+

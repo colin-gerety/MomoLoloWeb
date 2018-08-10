@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Current Art</h1>
+<% if !@artists.blank? %>
+<%   @artists.each do |artist| %>
+     <%= render partial: "artist", locals: { artist: artist } %>
+<%   end %>
+
+<% end %>
+

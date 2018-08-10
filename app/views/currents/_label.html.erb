@@ -1,0 +1,19 @@
+<div class="art_label">
+  <div class="field">
+    <span class="label">Artist:</span>
+    <span class="value artist"><%= art_piece.artist.name %></span>
+  </div>
+  <div class="field">
+    <span class="label">Title:</span>
+    <span class="value title"><%= art_piece.title %></span>
+  </div>
+  <div class="field">
+    <span class="label">Medium:</span>
+    <span class="value media"><%= art_piece.media %></span>
+  </div>
+  <div class="field">
+    <span class="label">Price:</span>
+    <span class="value price">$<%= number_with_precision(art_piece.price, :precision => 0) %></span>
+  </div>
+</div>
+
