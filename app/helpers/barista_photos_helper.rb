@@ -1,0 +1,2 @@
+module BaristaPhotosHelper
+end
