@@ -1,8 +1,10 @@
 function showMobileMenu(event) {
  $("#appBlocker").removeClass("EnableApp");
  $("#appBlocker").addClass("BlockApp");
- $("#mobileMenuIcon").removeClass("ShowMobileIcon");
- $("#mobileMenuIcon").addClass("HideMobileIcon");
+
+ $("#mobileWrapper").removeClass("ShowMobileWrapper");
+ $("#mobileWrapper").addClass("HideMobileWrapper");
+
  $("#mobileMenuCancel").removeClass("HideMobileCancel");
  $("#mobileMenuCancel").addClass("ShowMobileCancel");
  $("#menuList").removeClass("HideMenuList");
@@ -13,8 +15,10 @@ function showMobileMenu(event) {
 function hideMobileMenu(event) {
  $("#appBlocker").removeClass("BlockApp");
  $("#appBlocker").addClass("EnableApp");
- $("#mobileMenuIcon").removeClass("HideMobileIcon");
- $("#mobileMenuIcon").addClass("ShowMobileIcon");
+
+ $("#mobileWrapper").removeClass("HideMobileWrapper");
+ $("#mobileWrapper").addClass("ShowMobileWrapper");
+
  $("#mobileMenuCancel").removeClass("ShowMobileCancel");
  $("#mobileMenuCancel").addClass("HideMobileCancel");
  $("#menuList").removeClass("ShowMenuList");
@@ -22,8 +26,22 @@ function hideMobileMenu(event) {
  event.preventDefault();
 }
 
+function resizeHandler(event) {
+ $("#appBlocker").removeClass("BlockApp");
+ $("#appBlocker").removeClass("EnableApp");
+
+ $("#mobileWrapper").removeClass("HideMobileWrapper");
+ $("#mobileWrapper").removeClass("ShowMobileWrapper");
+
+ $("#mobileMenuCancel").removeClass("ShowMobileCancel");
+ $("#mobileMenuCancel").removeClass("HideMobileCancel");
+ $("#menuList").removeClass("ShowMenuList");
+ $("#menuList").removeClass("HideMenuList");
+}
+
 $(function() {
- $("#mobileMenuIcon").click(showMobileMenu);
+ $("#mobileWrapper").click(showMobileMenu);
  $("#mobileMenuCancel").click(hideMobileMenu);
+ $(window).resize(resizeHandler);
 });
 

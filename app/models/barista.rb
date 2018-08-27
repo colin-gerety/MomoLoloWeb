@@ -1,7 +1,7 @@
 class Barista < ApplicationRecord
-  has_many :images, as: :picturable, dependent: :destroy, inverse_of: :barista
-
-  accepts_nested_attributes_for :images, reject_if: proc { |attributes| attributes[:image].blank? }, allow_destroy: true
+  default_scope { includes(:barista_photos).order("barista_photos.updated_at DESC").references(:barista_photos) }
+  
+  has_many :barista_photos, dependent: :destroy
 
   after_initialize do |barista|
     barista.currently_working ||= true

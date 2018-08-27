@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213193905) do
+ActiveRecord::Schema.define(version: 2018_08_13_164854) do
 
-  create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.boolean "approved", default: false, null: false
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
@@ -34,23 +34,25 @@ ActiveRecord::Schema.define(version: 20180213193905) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "art_pieces", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "artist_id"
+  create_table "art_pieces", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.string "media"
-    t.float "price", limit: 24
-    t.boolean "needs_label"
-    t.boolean "currently_hanging"
-    t.integer "momo_percent"
-    t.integer "artist_percent"
-    t.integer "other_percent"
+    t.float "price"
+    t.boolean "can_display", default: true
+    t.boolean "needs_label", default: true
+    t.boolean "currently_hanging", default: true
+    t.integer "momo_percent", default: 30
+    t.integer "artist_percent", default: 70
+    t.integer "other_percent", default: 0
     t.text "note"
+    t.string "image"
+    t.bigint "artist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["artist_id"], name: "index_art_pieces_on_artist_id"
   end
 
-  create_table "artists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "artists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "phone"
     t.string "web_site"
@@ -59,7 +61,18 @@ ActiveRecord::Schema.define(version: 20180213193905) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "baristas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "barista_photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "image"
+    t.string "title"
+    t.string "note"
+    t.boolean "can_display", default: true
+    t.bigint "barista_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["barista_id"], name: "index_barista_photos_on_barista_id"
+  end
+
+  create_table "baristas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first"
     t.string "last"
     t.boolean "currently_working"
@@ -67,17 +80,18 @@ ActiveRecord::Schema.define(version: 20180213193905) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "place_photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "image"
-    t.boolean "display_in_ui"
-    t.string "picturable_type"
-    t.bigint "picturable_id"
+    t.string "title"
+    t.string "note"
+    t.boolean "can_display", default: true
+    t.bigint "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["picturable_type", "picturable_id"], name: "index_images_on_picturable_type_and_picturable_id"
+    t.index ["place_id"], name: "index_place_photos_on_place_id"
   end
 
-  create_table "places", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "places", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "street_address"
     t.string "city_state"
@@ -86,4 +100,6 @@ ActiveRecord::Schema.define(version: 20180213193905) do
   end
 
   add_foreign_key "art_pieces", "artists"
+  add_foreign_key "barista_photos", "baristas"
+  add_foreign_key "place_photos", "places"
 end

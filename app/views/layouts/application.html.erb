@@ -1,14 +1,29 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>MomoLoloWeb</title>
-    <%= csrf_meta_tags %>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="Momo Lolo web page.">
+  <meta name="author" content="Momo Lolo">
+  <meta name="keywords" content="coffee,coffee shop,espresso,chai,pastries,matcha,smoothies">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= @place.name %></title>
+  <%= csrf_meta_tags %>
+  <link rel='stylesheet' id='themify-google-fonts-css'  href='http://fonts.googleapis.com/css?family=Open+Sans%3A400italic%2C600italic%2C700italic%2C400%2C300%2C600%2C700%7COswald%7COswald%3Anormal%2Cbold%7COswald%3Anormal%2C300%7COswald%3Anormal%2Cbold%7COswald%3Anormal%2C300%7COswald%3Anormal%2Cbold&#038;subset=latin&#038;ver=4.9.8' type='text/css' media='all' />
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
+<body>
+  <div id="appBlocker"></div>
+  <%= render :partial => 'header' %>
+  <p id="notice"><%= notice %></p>
+<main>
+  <section>
     <%= yield %>
-  </body>
+  </section>
+</main>
+<footer>
+  <p>This is where copyright would go if we cared.</p>
+</footer>
+</body>
 </html>

@@ -1,3 +1,40 @@
 // Place all the styles related to the places controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#place {
+  overflow: auto;
+  background-image: url(asset-path('topBackground.png'));
+  background-size: 100%;
+  color: #fff;
+}
+
+#place #placeWrapper {
+  float: right;
+  position: relative;
+  width: 40%;
+}
+
+#place #titleSection {
+  font-size: 8vw;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 2em;
+  letter-spacing: .25em;
+}
+
+#place #hours {
+  font-size: 3.2vw;
+  text-decoration: none;
+}
+
+#place #location {
+  margin-top: 3em;
+  margin-bottom: 1em;
+}
+#place #location div {
+  font-size: 2.2vw;
+}
+
+

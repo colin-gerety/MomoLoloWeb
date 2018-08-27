@@ -1,16 +1,16 @@
 body {
   background-color: #fff;
   color: #333;
-  margin: 33px;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+  /* margin: 33px; */
+  font-family: Oswald, verdana, arial, helvetica, sans-serif;
+  /* font-size: 13px; */
+  /* line-height: 18px; */
 }
 
 p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+  /* font-family: verdana, arial, helvetica, sans-serif; */
+  /* font-size: 13px; */
+  /* line-height: 18px; */
 }
 
 pre {
@@ -82,3 +82,187 @@ div {
 label {
   display: block;
 }
+
+/* *********** app specific **********/
+
+@media screen and (max-width: 826px) {
+  header {
+  }
+  #logo a {
+    font-size: 8vw;
+  }
+  #tagLine {
+    font-size: 3vw;
+  }
+  #mobileWrapper {
+    display: block;
+  }
+  #menuList {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  #mobileMenuCancel {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 825px) {
+  header {
+    /* min-height: 8vw; */
+  }
+  #logo a {
+    font-size: 4.3vw;
+  }
+  #tagLine {
+    font-size: 1.5vw;
+  }
+  #description {
+    font-size: 1.5vw;
+  }
+  #mobileWrapper {
+    display: none;
+  }
+  #menuList {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  #mobileMenuCancel {
+    display: none;
+  }
+}
+
+#appBlocker {
+  display: none;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: rgba(255,255,255,.5);
+}
+.EnableApp {
+  display: none;
+  z-index: -1;
+} 
+.BlockApp {
+  display: block;
+  z-index: 99;
+} 
+
+header {
+  /* min-height: 4.5em; */
+  width: 100%;
+  margin-left: .5em;
+}
+
+#logoBlock {
+  float: left;
+  margin-bottom: .5em;
+}
+
+#tagLine {
+  font: "Open Sans","Arial",sans-serif;
+  font-weight: lighter;
+  /* font-size: .8em; */
+  line-height: 110%;
+  margin-top: 1em;
+}
+header nav {
+  float: right;
+  margin-top: .75em;
+  z-index: 100;
+}
+
+header a {
+  text-decoration: none;
+}
+header a:visited {
+  color: #000;
+}
+header a:hover {
+  background-color: #fff;
+}
+
+#mobileWrapper {
+  padding: 0;
+  margin-right: 2em;
+  /* display: flex; */
+  justify-content: flex-end;
+  align-items: center;
+  postition: relative;
+}
+
+#menuList.ShowMenuList {
+  display: flex;
+}
+#menuList.HideMenuList {
+  display: none;
+}
+#mobileWrapper.ShowMobileWrapper {
+  display: inline-block;
+}
+#mobileWrapper.HideMobileWrapper {
+  display: none;
+}
+#mobileMenuCancel.ShowMobileCancel {
+  display: inline-block;
+}
+#mobileMenuCancel.HideMobileCancel {
+  display: none;
+}
+
+#mobileMenuIcon {
+  display: inline-block;
+  width: 1.1em;
+}
+.WhiteBackground {
+  background-color: white;
+}
+.BlueBackground {
+  background-color: blue;
+}
+
+#mobileMenuIcon span {
+  display: block;
+  font-size : 10%;
+  height: .5em;
+  overflow: hidden;
+  border-top: .17em solid black;
+}
+#mobileMenuCancel {
+  margin-left: auto;
+}
+
+#menuList {
+  padding: 0;
+  margin: 0;
+  justify-content: flex-end;
+  position: relative;
+}
+#menuList li {
+  list-style: none;
+}
+
+#menuList li a {
+  margin: .6em;
+  font-size: 125%;
+  font-weight: 300;
+  text-decoration: none;
+}
+
+main {
+  clear: left;
+}
+
+footer {
+  clear: both;
+}
+
+
+footer p {
+  font: "Open Sans","Arial",sans-serif;
+  font-weight: lighter;
+  font-size: .8em;
+  line-height: 110%;
+}
+

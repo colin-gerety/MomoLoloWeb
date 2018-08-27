@@ -1,12 +1,12 @@
-class CreateArtPieces < ActiveRecord::Migration[5.1]
+class CreateArtPieces < ActiveRecord::Migration[5.2]
   def change
     create_table :art_pieces do |t|
       t.string :title
       t.string :media
       t.float :price
-      t.boolean :can_display => true
-      t.boolean :needs_label
-      t.boolean :currently_hanging
+      t.boolean :can_display, :default => true
+      t.boolean :needs_label, :default => true
+      t.boolean :currently_hanging, :default => true
       t.integer :momo_percent, :default => 30
       t.integer :artist_percent, :default => 70
       t.integer :other_percent, :default => 0

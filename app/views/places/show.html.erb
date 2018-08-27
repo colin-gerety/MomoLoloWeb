@@ -1,19 +1,20 @@
-<p id="notice"><%= notice %></p>
+<section id="place">
 
-<p>
-  <strong>Name:</strong>
-  <%= @place.name %>
-</p>
+<div id="placeWrapper">
 
-<p>
-  <strong>Street address:</strong>
-  <%= @place.street_address %>
-</p>
+  <div id="titleSection">
+    <div>Coffee</div>
+    <div>House</div>
+  </div>
+  
+  <div id="hours">
+    <div class="Hours">Weekdays 6:30 am – 10:00 pm</div>
+    <div class="Hours">Weekends 7:30 am – 10:00 pm</div>
+  </div>
 
-<p>
-  <strong>City state:</strong>
-  <%= @place.city_state %>
-</p>
-
-<%= link_to 'Edit', edit_place_path(@place) %> |
-<%= link_to 'Back', places_path %>
+  <div id="location">
+    <div class="Address"><%= @place.street_address %></div>
+    <div class="Address"><%= @place.city_state %></div> 
+  </div>
+</div> <!-- placeWrapper -->
+</section> <!-- place -->
