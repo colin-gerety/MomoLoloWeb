@@ -39,6 +39,18 @@ function resizeHandler(event) {
  $("#menuList").removeClass("HideMenuList");
 }
 
+$(document).ready(function() {
+  var owl = $('.owl-carousel');
+  owl.owlCarousel({
+    items: 4,
+    loop: true,
+    margin: 10,
+    autoplay: true,
+    autoplayTimeout: 1000,
+    autoplayHoverPause: true
+  });
+})
+
 $(function() {
  $("#mobileWrapper").click(showMobileMenu);
  $("#mobileMenuCancel").click(hideMobileMenu);

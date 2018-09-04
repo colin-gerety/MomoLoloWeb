@@ -5,7 +5,10 @@
 #place {
   overflow: auto;
   background-image: url(asset-path('topBackground.png'));
-  background-size: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  backgound-attachment: scroll;
+  background-position: center center;
   color: #fff;
 }
 
@@ -29,12 +32,80 @@
   text-decoration: none;
 }
 
-#place #location {
+#place #address {
   margin-top: 3em;
   margin-bottom: 1em;
 }
-#place #location div {
+#place #address div {
   font-size: 2.2vw;
 }
 
+#address {
+  overflow: auto;
+}
+
+@media screen and (max-width: 826px) {
+  #locationWrapper {
+    flex-direction: column;
+  }
+  #map {
+    width: 98%;
+  }
+  #comeVisit {
+    width: 98%;
+  }
+}
+@media screen and (min-width: 825px) {
+  #locationWrapper {
+    flex-direction: row;
+  }
+  #map {
+    width: 60vw;
+  }
+  #comeVisit {
+    width: 40vw;
+  }
+}
+
+#location {
+  overflow: auto;
+  background-image: url(asset-path('latteInShop.jpg'));
+  background-repeat: no-repeat;
+  background-size: cover;
+  backgound-attachment: scroll;
+  background-position: right center;
+  color: #fff;
+}
+
+#locationWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+#locationWrapper h1 {
+  margin: 4vw;
+  font-size: 7vw;
+  font-weight: 300;
+}
+
+#locationWrapper p {
+  margin: 4vw;
+  font-size: 3vw;
+  font-weight: 300;
+  line-height: 1.1em;
+}
+
+#map {
+  height: 50vw;
+}
+#map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+#comeVisit {
+  margin-bottom: 5em;
+}
 

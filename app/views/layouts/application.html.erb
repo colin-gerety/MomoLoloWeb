@@ -6,7 +6,7 @@
   <meta name="author" content="Momo Lolo">
   <meta name="keywords" content="coffee,coffee shop,espresso,chai,pastries,matcha,smoothies">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= @place.name %></title>
+  <title>Momo Lolo Coffee House</title>
   <%= csrf_meta_tags %>
   <link rel='stylesheet' id='themify-google-fonts-css'  href='http://fonts.googleapis.com/css?family=Open+Sans%3A400italic%2C600italic%2C700italic%2C400%2C300%2C600%2C700%7COswald%7COswald%3Anormal%2Cbold%7COswald%3Anormal%2C300%7COswald%3Anormal%2Cbold%7COswald%3Anormal%2C300%7COswald%3Anormal%2Cbold&#038;subset=latin&#038;ver=4.9.8' type='text/css' media='all' />
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -16,14 +16,13 @@
 <body>
   <div id="appBlocker"></div>
   <%= render :partial => 'header' %>
-  <p id="notice"><%= notice %></p>
 <main>
+  <p id="notice"><%= notice %></p>
   <section>
     <%= yield %>
   </section>
 </main>
-<footer>
-  <p>This is where copyright would go if we cared.</p>
-</footer>
+  <div id="footerSpacer"></div>
+  <%= render :partial => 'footer' %>
 </body>
 </html>

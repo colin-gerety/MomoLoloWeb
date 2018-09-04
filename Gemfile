@@ -9,6 +9,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'devise'
 gem 'jquery-rails'
+gem 'owlcarousel-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'

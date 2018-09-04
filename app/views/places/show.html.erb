@@ -1,7 +1,5 @@
-<section id="place">
-
+<div id="place">
 <div id="placeWrapper">
-
   <div id="titleSection">
     <div>Coffee</div>
     <div>House</div>
@@ -12,9 +10,40 @@
     <div class="Hours">Weekends 7:30 am – 10:00 pm</div>
   </div>
 
-  <div id="location">
+  <div id="address">
     <div class="Address"><%= @place.street_address %></div>
     <div class="Address"><%= @place.city_state %></div> 
   </div>
 </div> <!-- placeWrapper -->
-</section> <!-- place -->
+</div> <!-- place -->
+
+<div class="TitleDiv">
+</div>
+<div id="location">
+<div id="locationWrapper">
+  <div id="map">
+    <iframe 
+       src="https://www.google.com/maps/embed/v1/place?q=Momo%20Lolo%20Coffee%20House%2C%201129%20West%20Elizabeth%20Street%2C%20Fort%20Collins%2C%20CO%2C%20USA&key=AIzaSyAmtKV40lGmD1mVMp4RB9jXLXgltWQxXGQ" 
+       allowfullscreen>
+     </iframe>
+  </div>
+
+  <div id="comeVisit">
+    <h1>COME VISIT US!</h1>
+    <p class="BigParagraph">
+       Located in the upbeat and popular area of Campus West. Come try our
+       excellent espresso, coffee, tea, matcha... and spend time in our
+       unique shop.
+    </p>
+  </div>
+</div> <!-- locationWrapper -->
+</div> <!-- location -->
+<div class="owl-carousel owl-theme">
+  <%= image_tag("facebookLinkIcon.png", class: "item", alt: "facebook link") %>
+  <%= image_tag("instagramLinkIcon.png", class: "item", alt: "instagram link") %>
+  <%= image_tag("calendarLinkIcon.png", class: "item", alt: "Momo Lolo calendar link") %>
+  <%= image_tag("calendarLinkIcon.png", class: "item", alt: "Momo Lolo calendar link") %>
+  <%= image_tag("facebookLinkIcon.png", class: "item", alt: "facebook link") %>
+  <%= image_tag("instagramLinkIcon.png", class: "item", alt: "instagram link") %>
+</div>
+
