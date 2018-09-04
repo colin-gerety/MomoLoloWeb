@@ -1,0 +1,2 @@
+Place.create(name: "Momo Lolo Coffee House", street_address: "1129 W. Elizabeth St.", city_state: "Fort Collins, CO 80525");
+
