@@ -1,31 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Baristas</h1>
+<div id="baristas" class="TopWrapper">
 
-<table>
-  <thead>
-    <tr>
-      <th>First</th>
-      <th>Last</th>
-      <th>Currently working</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<h1>Meet The Baristas</h1>
 
-  <tbody>
-    <% @baristas.each do |barista| %>
-      <tr>
-        <td><%= barista.first %></td>
-        <td><%= barista.last %></td>
-        <td><%= barista.currently_working %></td>
-        <td><%= link_to 'Show', barista %></td>
-        <td><%= link_to 'Edit', edit_barista_path(barista) %></td>
-        <td><%= link_to 'Destroy', barista, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<h2>Some of the nicest people ever</h2>
 
-<br>
+</div> <!-- Top Wrapper -->
 
+<div class="PhotoList BaristaSummary">
+  <% @baristas.each do |barista| %>
+     <% @barista = barista %>
+     <% @barista_photo = barista.primary_photo %>
+     <%= render partial: 'barista_photos/display', locals: {barista_summary: true} %>
+  <% end %>
+
+</div> <!-- PhotoList -->
+
+<% if admin_signed_in? %>
+<div class="AdminRegion">
 <%= link_to 'New Barista', new_barista_path %>
+</div>
+<% end %>

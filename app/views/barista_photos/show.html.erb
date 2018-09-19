@@ -1,24 +1,16 @@
-<p id="notice"><%= notice %></p>
+<div class="BaristaPhoto">
+    <figure class="ImageArea">
+      <%= image_tag @barista_photo.image_url(:thumb).to_s %>
+      <figcaption><%= @barista_photo.title %></figcaption>
+    </div>
+<div>
 
-<p>
-  <strong>Image:</strong>
-  <%= @barista_photo.image %>
-</p>
+<% if !@barista_photo.note.blank? %>
+  <div class="field">
+    <span class="label">Note:</span>
+    <span class="value"><%= @barista_photo.note %></span>
+  </div>
+<% end %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @barista_photo.title %>
-</p>
-
-<p>
-  <strong>Note:</strong>
-  <%= @barista_photo.note %>
-</p>
-
-<p>
-  <strong>Can display:</strong>
-  <%= @barista_photo.can_display %>
-</p>
-
-<%= link_to 'Edit', edit_barista_photo_path(@barista_photo) %> |
-<%= link_to 'Back', barista_photos_path %>
+<%= link_to 'Edit', edit_barista_barista_photo_path(@barista_photo.barista_id, @barista_photo.id) %> |
+<%= link_to 'Back', barista_barista_photo_path(@barista_photo.barista_id, @barista_photo.id) %>

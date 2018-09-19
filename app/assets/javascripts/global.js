@@ -1,6 +1,8 @@
 function showMobileMenu(event) {
+ /*
  $("#appBlocker").removeClass("EnableApp");
  $("#appBlocker").addClass("BlockApp");
+ */
 
  $("#mobileWrapper").removeClass("ShowMobileWrapper");
  $("#mobileWrapper").addClass("HideMobileWrapper");
@@ -13,8 +15,10 @@ function showMobileMenu(event) {
 }
 
 function hideMobileMenu(event) {
+ /*
  $("#appBlocker").removeClass("BlockApp");
  $("#appBlocker").addClass("EnableApp");
+ */
 
  $("#mobileWrapper").removeClass("HideMobileWrapper");
  $("#mobileWrapper").addClass("ShowMobileWrapper");
@@ -23,6 +27,39 @@ function hideMobileMenu(event) {
  $("#mobileMenuCancel").addClass("HideMobileCancel");
  $("#menuList").removeClass("ShowMenuList");
  $("#menuList").addClass("HideMenuList");
+
+ event.preventDefault();
+}
+
+function showLoginMenu(event) {
+ /*
+ $("#appBlocker").removeClass("EnableApp");
+ $("#appBlocker").addClass("BlockApp");
+ */
+
+ $("#loginWrapper").removeClass("ShowLoginWrapper");
+ $("#loginWrapper").addClass("HideLoginWrapper");
+
+ $("#loginMenuCancel").removeClass("HideLoginCancel");
+ $("#loginMenuCancel").addClass("ShowLoginCancel");
+ $("#loginList").removeClass("HideLoginList");
+ $("#loginList").addClass("ShowLoginList");
+ event.preventDefault();
+}
+
+function hideLoginMenu(event) {
+ /*
+ $("#appBlocker").removeClass("BlockApp");
+ $("#appBlocker").addClass("EnableApp");
+ */
+
+ $("#loginWrapper").removeClass("HideLoginWrapper");
+ $("#loginWrapper").addClass("ShowLoginWrapper");
+
+ $("#loginMenuCancel").removeClass("ShowLoginCancel");
+ $("#loginMenuCancel").addClass("HideLoginCancel");
+ $("#loginList").removeClass("ShowLoginList");
+ $("#loginList").addClass("HideLoginList");
  event.preventDefault();
 }
 
@@ -44,9 +81,11 @@ $(document).ready(function() {
   owl.owlCarousel({
     items: 4,
     loop: true,
-    margin: 10,
+    dots: false,
+    margin: 2,
     autoplay: true,
-    autoplayTimeout: 1000,
+    autoplaySpeed: 3000,
+    autoplayTimeout: 3000,
     autoplayHoverPause: true
   });
 })
@@ -55,5 +94,7 @@ $(function() {
  $("#mobileWrapper").click(showMobileMenu);
  $("#mobileMenuCancel").click(hideMobileMenu);
  $(window).resize(resizeHandler);
+ $("#loginMenuIcon").click(showLoginMenu);
+ $("#loginMenuCancel").click(hideLoginMenu);
 });
 

@@ -1,5 +1,6 @@
 class BaristasController < ApplicationController
   before_action :set_barista, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!, :except => [:show, :index]
 
   # GET /baristas
   # GET /baristas.json
@@ -10,6 +11,7 @@ class BaristasController < ApplicationController
   # GET /baristas/1
   # GET /baristas/1.json
   def show
+    @barista_display_photos = @barista.barista_photos.where(can_display: true).where.not(image: [nil, ""]).order(created_at: :desc)
   end
 
   # GET /baristas/new
@@ -64,11 +66,12 @@ class BaristasController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_barista
+      @title = 'Fort Collins Best Baristas'
       @barista = Barista.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def barista_params
-      params.require(:barista).permit(:first, :last, :currently_working)
+      params.require(:barista).permit(:first, :last, :currently_working, :tag_line)
     end
 end

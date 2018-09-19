@@ -10,6 +10,7 @@ class PlacesController < ApplicationController
   # GET /places/1
   # GET /places/1.json
   def show
+    @place_display_photos = @place.place_photos.where(can_display: true).order(created_at: :desc).limit(6)
   end
 
   # GET /places/new

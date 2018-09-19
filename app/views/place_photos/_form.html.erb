@@ -1,37 +1,52 @@
-<%= form_with(model: place_photo, local: true) do |form| %>
-  <% if place_photo.errors.any? %>
+<% @place_photo = PlacePhoto.new if @place_photo.nil? %>
+<% @place = @place_photo.place.blank? ? Place.find(1) : @place_photo.place %>
+<%= form_with(model: [Place, @place_photo], local: true) do |f| %>
+  <% if @place_photo.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(place_photo.errors.count, "error") %> prohibited this place_photo from being saved:</h2>
+      <h2><%= pluralize(@place_photo.errors.count, "error") %> prohibited this place photo from being saved:</h2>
 
       <ul>
-      <% place_photo.errors.full_messages.each do |message| %>
+      <% @place_photo.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
+  <% if @place.blank? %>
+    <div class="field">
+      <%= f.label 'Place:' %>
+      <%= f.collection_select(:place_id, Place.all, :id, :name, {prompt: 'Please select place', selected: @place.id}) %>
+    </div>
+  <% end %>
+
+  <% if @place_photo.image.blank? %>
+    <div class="field">
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+    </div>
+  <% else %>
+    <div class="ImageDisplay">
+      <div>
+        <%= image_tag @place_photo.image_url(:thumb).to_s %>
+      </div>
+    </div>
+  <% end %>
 
   <div class="field">
-    <%= form.label :image %>
-    <%= form.text_field :image %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
   </div>
 
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= f.label :note %>
+    <%= f.text_field :note %>
   </div>
 
   <div class="field">
-    <%= form.label :note %>
-    <%= form.text_field :note %>
-  </div>
-
-  <div class="field">
-    <%= form.label :can_display %>
-    <%= form.check_box :can_display %>
+    <%= f.check_box :can_display %> <%= f.label :can_display %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= f.submit %>
   </div>
 <% end %>

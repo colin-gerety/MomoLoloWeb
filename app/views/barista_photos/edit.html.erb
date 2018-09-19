@@ -1,6 +1,9 @@
+<div class="AdminPage">
 <h1>Editing Barista Photo</h1>
 
-<%= render 'form', barista_photo: @barista_photo %>
+<%= render 'form', barista_barista_photo: @barista_photo %>
 
-<%= link_to 'Show', @barista_photo %> |
-<%= link_to 'Back', barista_photos_path %>
+<%= link_to 'Show', [@barista, @barista_photo] %> |
+<%= link_to 'Back', barista_barista_photos_path %>
+</div> <!--  AdminPage -->
+

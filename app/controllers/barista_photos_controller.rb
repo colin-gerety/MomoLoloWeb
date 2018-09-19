@@ -1,5 +1,6 @@
 class BaristaPhotosController < ApplicationController
   before_action :set_barista_photo, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!, :except => [:show, :index]
 
   # GET /barista_photos
   # GET /barista_photos.json
@@ -25,10 +26,11 @@ class BaristaPhotosController < ApplicationController
   # POST /barista_photos.json
   def create
     @barista_photo = BaristaPhoto.new(barista_photo_params)
+    @barista = @barista_photo.barista
 
     respond_to do |format|
       if @barista_photo.save
-        format.html { redirect_to @barista_photo, notice: 'Barista photo was successfully created.' }
+        format.html { redirect_to [@barista, @barista_photo], notice: 'Barista photo was successfully created.' }
         format.json { render :show, status: :created, location: @barista_photo }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class BaristaPhotosController < ApplicationController
   def update
     respond_to do |format|
       if @barista_photo.update(barista_photo_params)
-        format.html { redirect_to @barista_photo, notice: 'Barista photo was successfully updated.' }
+        format.html { redirect_to [@barista, @barista_photo], notice: 'Barista photo was successfully updated.' }
         format.json { render :show, status: :ok, location: @barista_photo }
       else
         format.html { render :edit }
@@ -56,7 +58,7 @@ class BaristaPhotosController < ApplicationController
   def destroy
     @barista_photo.destroy
     respond_to do |format|
-      format.html { redirect_to barista_photos_url, notice: 'Barista photo was successfully destroyed.' }
+      format.html { redirect_to barista_barista_photos_url, notice: 'Barista photo was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,10 +67,11 @@ class BaristaPhotosController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_barista_photo
       @barista_photo = BaristaPhoto.find(params[:id])
+      @barista = @barista_photo.barista
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def barista_photo_params
-      params.require(:barista).permit(:image, :title, :note, :can_display)
+      params.require(:barista_photo).permit(:id, :barista_id, :image, :title, :note, :can_display, :primary_photo)
     end
 end

@@ -9,6 +9,7 @@
       <th>Title</th>
       <th>Note</th>
       <th>Can display</th>
+      <th>Primary photo</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,9 +21,10 @@
         <td><%= barista_photo.title %></td>
         <td><%= barista_photo.note %></td>
         <td><%= barista_photo.can_display %></td>
-        <td><%= link_to 'Show', barista_photo %></td>
-        <td><%= link_to 'Edit', edit_barista_photo_path(barista_photo) %></td>
-        <td><%= link_to 'Destroy', barista_photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= barista_photo.primary_photo %></td>
+        <td><%= link_to 'Show', barista_barista_photo_path(barista_photo.barista.id, barista_photo.id) %></td>
+        <td><%= link_to 'Edit', edit_barista_barista_photo_path(barista_photo.barista.id, barista_photo.id) %></td>
+        <td><%= link_to 'Destroy', barista_barista_photo_path(barista_photo.barista.id, barista_photo.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Barista Photo', new_barista_photo_path %>
+<%= link_to 'New Barista Photo', new_barista_barista_photo_path %>

@@ -1,24 +1,23 @@
-<p id="notice"><%= notice %></p>
+<div class="PlacePhoto">
+    <figure class="ImageArea">
+      <%= image_tag @place_photo.image_url(:thumb).to_s %>
+      <figcaption><%= @place_photo.title %></figcaption>
+    </figure>
+<div>
 
-<p>
-  <strong>Image:</strong>
-  <%= @place_photo.image %>
-</p>
+<% if !@place_photo.note.blank? %>
+  <div class="field">
+    <span class="label">Note:</span>
+    <span class="value"><%= @place_photo.note %></span>
+  </div>
+<% end %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @place_photo.title %>
-</p>
+  <div class="field">
+    <span class="label">Can Display:</span>
+    <span class="value"><%= @place_photo.can_display ? 'true' : 'false'  %></span>
+  </div>
 
-<p>
-  <strong>Note:</strong>
-  <%= @place_photo.note %>
-</p>
+<%= link_to 'Edit', edit_place_place_photo_path(@place_photo.place_id, @place_photo.id) %> |
+<%= link_to 'Back', place_place_photos_path(@place_photo.place_id, @place_photo.id) %>
 
-<p>
-  <strong>Can display:</strong>
-  <%= @place_photo.can_display %>
-</p>
-
-<%= link_to 'Edit', edit_place_photo_path(@place_photo) %> |
-<%= link_to 'Back', place_photos_path %>
+</div> <!-- PlacePhoto -->

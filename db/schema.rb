@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_13_164854) do
+ActiveRecord::Schema.define(version: 2018_09_19_220006) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.boolean "approved", default: false, null: false
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2018_08_13_164854) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "instagram"
   end
 
   create_table "barista_photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -69,6 +70,7 @@ ActiveRecord::Schema.define(version: 2018_08_13_164854) do
     t.bigint "barista_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "primary_photo"
     t.index ["barista_id"], name: "index_barista_photos_on_barista_id"
   end
 
@@ -78,6 +80,7 @@ ActiveRecord::Schema.define(version: 2018_08_13_164854) do
     t.boolean "currently_working"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "tag_line"
   end
 
   create_table "place_photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

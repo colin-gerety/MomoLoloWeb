@@ -1,20 +1,37 @@
-<%= form_with(model: barista_photo, local: true) do |form| %>
-  <% if barista_photo.errors.any? %>
+<% @barista_photo = BaristaPhoto.new if @barista_photo.nil? %>
+<% @barista = @barista_photo.barista %>
+<%= form_with(model: [Barista, @barista_photo], local: true) do |form| %>
+  <% if @barista_photo.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(barista_photo.errors.count, "error") %> prohibited this barista_photo from being saved:</h2>
+      <h2><%= pluralize(@barista_photo.errors.count, "error") %> prohibited this barista_photo from being saved:</h2>
 
       <ul>
-      <% barista_photo.errors.full_messages.each do |message| %>
+      <% @barista_photo.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
+  <% if @barista.blank? %>
+    <div class="field">
+      <%= form.label 'Barista:' %>
+      <%= form.collection_select(:barista_id, Barista.all, :id, :full_name, {prompt: 'Please select barista'}) %>
+    </div>
+  <% end %>
 
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.text_field :image %>
-  </div>
+
+  <% if @barista_photo.image.blank? %>
+    <div class="field">
+      <%= form.label :image %>
+      <%= form.file_field :image %>
+    </div>
+  <% else %>
+    <div class="ImageDisplay">
+      <div>
+        <%= image_tag @barista_photo.image_url(:thumb).to_s %>
+      </div>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= form.label :title %>
@@ -29,6 +46,11 @@
   <div class="field">
     <%= form.label :can_display %>
     <%= form.check_box :can_display %>
+  </div>
+
+  <div class="field">
+    <%= form.label :primary_photo %>
+    <%= form.check_box :primary_photo %>
   </div>
 
   <div class="actions">

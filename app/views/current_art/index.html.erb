@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+<div id="art" class="TopWrapper">
+  <div class="PhotoFilter">
+    <h1>Fort Collins Art</h1>
+    <h2>See a sample of what we have in our shop</h2>
+  </div>
+</div> <!-- TopWrapper -->
+
+<% if !@artists.blank? %>
+<%   @artists.each do |artist| %>
+     <%= render partial: "artist", locals: { artist: artist } %>
+<%   end %>
+<% end %>
+
+</div> <!-- artWrapper -->
+

@@ -1,3 +1,4 @@
+<p id="notice"><%= notice %></p>
 <div id="place">
 <div id="placeWrapper">
   <div id="titleSection">
@@ -38,12 +39,11 @@
   </div>
 </div> <!-- locationWrapper -->
 </div> <!-- location -->
+<% if @place_display_photos.count > 0 %>
 <div class="owl-carousel owl-theme">
-  <%= image_tag("facebookLinkIcon.png", class: "item", alt: "facebook link") %>
-  <%= image_tag("instagramLinkIcon.png", class: "item", alt: "instagram link") %>
-  <%= image_tag("calendarLinkIcon.png", class: "item", alt: "Momo Lolo calendar link") %>
-  <%= image_tag("calendarLinkIcon.png", class: "item", alt: "Momo Lolo calendar link") %>
-  <%= image_tag("facebookLinkIcon.png", class: "item", alt: "facebook link") %>
-  <%= image_tag("instagramLinkIcon.png", class: "item", alt: "instagram link") %>
-</div>
+  <% @place_display_photos.each do |photo| %>
+     <%= image_tag(photo.image_url(:thumb).to_s) %>
+  <% end %>
+</div> <!-- carousel -->
+<% end %> 
 

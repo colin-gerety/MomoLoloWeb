@@ -1,3 +1,29 @@
 // Place all the styles related to the baristas controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#baristas.TopWrapper {
+  background-image: url(asset-path('atTheBar.jpg'));
+}
+
+.PhotoList.BaristaSummary .PhotoWrapper {
+  border: none;
+}
+
+.PhotoList.BaristaSummary img {
+  width: 15em;
+  height: 15em;
+  border-radius: 7.5em;
+}
+
+.BaristaSummary .BaristaName {
+  font-size: 1.2em;
+}
+
+.PhotoWrapper .BaristaTag {
+  font: 1em/1.85em 'Open Sans',"Arial",sans-serif;
+  color: #666;
+  margin-top: .5em;
+  font-weight: 500;
+}
+

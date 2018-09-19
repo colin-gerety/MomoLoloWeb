@@ -1,5 +1,6 @@
 class PlacePhotosController < ApplicationController
   before_action :set_place_photo, only: [:show, :edit, :update, :destroy]
+  /* before_action :authenticate_admin!, :except => [:show, :index] */
 
   # GET /place_photos
   # GET /place_photos.json
@@ -28,7 +29,7 @@ class PlacePhotosController < ApplicationController
 
     respond_to do |format|
       if @place_photo.save
-        format.html { redirect_to @place_photo, notice: 'Place photo was successfully created.' }
+        format.html { redirect_to place_place_photos_url, notice: 'Place photo was successfully created.' }
         format.json { render :show, status: :created, location: @place_photo }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class PlacePhotosController < ApplicationController
   def update
     respond_to do |format|
       if @place_photo.update(place_photo_params)
-        format.html { redirect_to @place_photo, notice: 'Place photo was successfully updated.' }
+        format.html { redirect_to [@place, @place_photo], notice: 'Place photo was successfully updated.' }
         format.json { render :show, status: :ok, location: @place_photo }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class PlacePhotosController < ApplicationController
   def destroy
     @place_photo.destroy
     respond_to do |format|
-      format.html { redirect_to place_photos_url, notice: 'Place photo was successfully destroyed.' }
+      format.html { redirect_to place_place_photos_url, notice: 'Place photo was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,10 +66,11 @@ class PlacePhotosController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_place_photo
       @place_photo = PlacePhoto.find(params[:id])
+      @place = @place_photo.place if @place_photo.place
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_photo_params
-      params.require(:place).permit(:image, :title, :note, :can_display)
+      params.require(:place_photo).permit(:id, :place_id, :image, :title, :note, :can_display)
     end
 end

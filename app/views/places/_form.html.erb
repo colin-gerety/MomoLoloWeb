@@ -1,10 +1,10 @@
-<%= form_with(model: place, local: true) do |form| %>
-  <% if place.errors.any? %>
+<%= form_with(model: @place, local: true) do |form| %>
+  <% if @place.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(place.errors.count, "error") %> prohibited this place from being saved:</h2>
+      <h2><%= pluralize(@place.errors.count, "error") %> prohibited this @place from being saved:</h2>
 
       <ul>
-      <% place.errors.full_messages.each do |message| %>
+      <% @place.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -26,6 +26,22 @@
     <%= form.text_field :city_state, id: :place_city_state %>
   </div>
 
+  <h1>Photos:</h1>
+  <div class="NewPhotoLink">
+    <%= link_to 'Create New Place Photo', new_place_place_photo_path(@place) %>
+  </div>
+  <% if @place.place_photos.count > 0 %>
+    <div class="EditPhotoList">
+      <% if @place.place_photos.count > 0 %>
+        <% @place.place_photos.each do |photo| %>
+          <div class="PhotoWrapper">
+            <% @place_photo = photo %>
+            <%= render partial: 'place_photos/form' %>
+          </div>
+        <% end %>
+      <% end %>
+    </div> <!-- EditPhotoList -->
+  <% end %>
   <div class="actions">
     <%= form.submit %>
   </div>

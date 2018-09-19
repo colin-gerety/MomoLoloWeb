@@ -2,7 +2,9 @@ body {
   background-color: #fff;
   color: #333;
   margin: 0px;
-  font-family: Oswald, verdana, arial, helvetica, sans-serif;
+  font-family: 'Open Sans',"Arial",sans-serif; 
+  /* font: 1em/1.85em 'Open Sans',"Arial",sans-serif; */
+  /* font-family: Oswald, verdana, arial, helvetica, sans-serif; */
   box-sizing: border-box;
   /* font-size: 13px; */
   /* line-height: 18px; */
@@ -63,46 +65,64 @@ div {
   padding: 7px 7px 0;
   margin-bottom: 20px;
   background-color: #f0f0f0;
-
-  h2 {
-    text-align: left;
-    font-weight: bold;
-    padding: 5px 5px 5px 15px;
-    font-size: 12px;
-    margin: -7px -7px 0;
-    background-color: #c00;
-    color: #fff;
-  }
-
-  ul li {
-    font-size: 12px;
-    list-style: square;
-  }
 }
 
-label {
-  display: block;
+section h1 {
+    text-align: center;
+    font-size: 10vw; 
+    margin: 0 0 .4em;
+    word-wrap: normal;
+    font-weight: bold;
+    color: #000;
+    font-family: Oswald;
+}
+
+section h2 {
+    text-align: center;
+    font-size: 1.75em; 
+    margin: 0 0 .2em;
+    font-weight: bold;
+    color: #000;
+    font-family: Oswald;
+}
+
+
+ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+textarea {
+ vertical-align: middle;
 }
 
 /* *********** app specific **********/
 
+header {
+  font-family: Oswald, verdana, arial, helvetica, sans-serif;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
 @media screen and (max-width: 826px) {
-  header {
+  #headerStrut {
+   float: left;
+   width: 1px;
+   min-height: 16vw;
   }
   .BigLogo a {
     font-size: 8vw;
+  }
+  #menuList li a, #loginList li a {
+    font-size: 3vw;
   }
   #tagLine {
     font-size: 3vw;
   }
   main {
-   top: 12vw;
+   /* top: 12vw; */
   }
   #footerSpacer {
-    min-height: 12vw;
-  }
-  #mobileWrapper {
-    display: block;
+    /* min-height: 12vw; */
   }
   #mobileWrapper {
     display: block;
@@ -116,23 +136,32 @@ label {
   #mobileMenuCancel {
     display: none;
   }
+  .PhotoWrapper {
+    margin: 0em 0em .5em 0em;
+    padding: .2em;
+  }
 }
 
 @media screen and (min-width: 825px) {
-  header {
-    /* min-height: 8vw; */
+  #headerStrut {
+   float: left;
+   width: 1px;
+   min-height: 9vw;
   }
   .BigLogo a {
     font-size: 4.3vw;
+  }
+  #menuList li a, #loginList li a {
+    font-size: 2.2vw;
   }
   #tagLine {
     font-size: 1.5vw;
   }
   main {
-   top: 7vw;
+   /* top: 7vw; */
   }
   #footerSpacer {
-    min-height: 7vw;
+    /* min-height: 7vw; */
   }
   #description {
     font-size: 1.5vw;
@@ -144,6 +173,7 @@ label {
     display: none;
   }
   #menuList {
+    border: none;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -152,6 +182,23 @@ label {
   #mobileMenuCancel {
     display: none;
   }
+  .PhotoWrapper {
+    margin: .5em .2em .5em 2em;
+    padding: .2em;
+  }
+}
+
+#loginWrapper {
+  display: block;
+}
+#loginList {
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  left: -40vw;
+}
+#loginMenuCancel {
+  display: none;
 }
 
 #appBlocker {
@@ -170,7 +217,7 @@ label {
 } 
 #appBlocker.BlockApp {
   display: block;
-  z-index: 99;
+  z-index: 75;
 } 
 
 header {
@@ -180,7 +227,7 @@ header {
   position: fixed;
   top: 0px;
   left: 0px;
-  background-color: rgba(255,255,255, .8);
+  background-color: rgba(250,250,250, .9);
 }
 
 #logoBlock {
@@ -215,6 +262,7 @@ header a:visited, footer a:visited {
   color: #000;
 }
 header a:hover, footer a:hover {
+  color: #000;
   background-color: #fff;
 }
 
@@ -231,9 +279,11 @@ header a:hover, footer a:hover {
 #menuList.ShowMenuList {
   display: flex;
   right: 0px;
+  z-index: 100;
 }
 #menuList.HideMenuList {
   display: none;
+  right: -40vw;
 }
 #mobileWrapper.ShowMobileWrapper {
   display: inline-block;
@@ -252,6 +302,47 @@ header a:hover, footer a:hover {
   display: inline-block;
   width: 1.1em;
 }
+
+#loginWrapper {
+  /* float: left; */
+  text-align: left;
+  margin-left: 1em;
+  margin-botton: .5em;
+  margin-right: 2em;
+  /* display: flex; */
+  /* justify-content: flex-end; */
+  align-items: center;
+  /* postition: relative; */
+}
+
+#loginList.ShowLoginList {
+  display: flex;
+  left: 0px;
+  z-index: 100;
+}
+#loginList.HideLoginList {
+  display: none;
+}
+#loginWrapper.ShowLoginWrapper {
+  display: block;
+}
+#loginWrapper.HideLoginWrapper {
+  display: none;
+}
+#loginMenuCancel.ShowLoginCancel {
+  display: inline-block;
+}
+#loginMenuCancel.HideLoginCancel {
+  display: none;
+}
+
+#loginMenuIcon {
+  display: inline-block;
+  width: .3em;
+  height: .3em;
+  background-color: gray;
+}
+
 .WhiteBackground {
   background-color: white;
 }
@@ -280,15 +371,14 @@ header a:hover, footer a:hover {
   /* transition-property: all; */
   transition-duration: 5s;
   transition-timing-function: linear;
-  transition-delay: 1s;
+  /* transition-delay: 1s; */
 }
-#menuList li, socialLinks li {
+#menuList li, #socialLinks li, #loginList li {
   list-style: none;
 }
 
-#menuList li a {
+#menuList li a, #loginList li a {
   margin: .6em;
-  font-size: 125%;
   font-weight: 300;
   text-decoration: none;
 }
@@ -305,8 +395,19 @@ main {
   background-color: white;
 }
 
+.AdminPage {
+  text-align: left;
+  background-color: rgba(240,255,240, .9);
+  padding-left: 3vw;
+}
+.AdminRegion {
+  background-color: rgba(240,255,240, .9);
+}
+
 footer {
   clear: both;
+  background-color: #fafafa;
+  border-top: 1px solid rgba(0,0,0,.1);
 }
 
 footer div {
@@ -323,7 +424,7 @@ footer .BigLogo, #socialLinks {
 }
 
 footer .SocialIcon img {
-  height: 2vw;
+  height: 1.5em;
   margin-left: 2vw;
   margin-right: 2vw;
 }
@@ -333,5 +434,49 @@ footer p {
   font-weight: lighter;
   font-size: .8em;
   line-height: 110%;
+}
+
+.PhotoList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.PhotoWrapper {
+  text-align: center;
+  border: thin solid gray;
+}
+
+.PhotoWrapper .field {
+  margin-left: 0em;
+  margin-right: 0em;
+}
+
+section .TopWrapper {
+  text-align: center;
+  margin-bottom: 1vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  backgound-attachment: scroll;
+  background-position: right center;
+  color: white;
+}
+
+section .TopWrapper h1 {
+  /* font-size: 8vw; */
+  text-transform: uppercase;
+  text-decoration: none;
+  color: white;
+  /* line-height: 2em;
+  letter-spacing: .25em;
+  */
+}
+
+section .TopWrapper h2 {
+  color: white;
+  font-size: 5vw;
+  text-decoration: none;
+  padding-bottom: 1.5em;
 }
 
