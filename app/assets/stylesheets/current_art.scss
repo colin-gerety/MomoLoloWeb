@@ -1,0 +1,15 @@
+// Place all the styles related to the currents controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#art.TopWrapper {
+  background-image: url(asset-path('art-gallery-2.jpg'));
+  background-color: rgba(0,0,0, 0.87);
+}
+
+#art.TopWrapper .PhotoFilter {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0, 0.75);
+}
+

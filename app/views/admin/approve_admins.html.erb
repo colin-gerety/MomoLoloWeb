@@ -1,0 +1,40 @@
+<div id="main_container" class="AdminPage">
+
+<h1>Approve Admins</h1>
+<p>Approve (or disapprove) requests to be an administrator of the Momo Lolo site.</p>
+
+<%=  form_tag('approve_admins', method: "post" ) do %>
+<h2>Waiting for Approval</h2>
+
+<% if @unapproved.blank? %>
+     No unapproved requests.
+<% else %>
+     <table class="approval_table">
+       <tr><th>Name</th><th>email</th><th>approve</th></tr>
+<%       @unapproved.each do |u| %>
+           <tr><td><%= u.name %></td><td><%= u.email %></td>
+              <td><%= check_box_tag("approve[]", u.id) %></td>
+           </tr>
+<%       end %>
+     </table>
+<% end %>
+
+<h2>Currently Approved</h2>
+<% if @approved.blank? %>
+      No approved requests.
+<% else %>
+     <table class="approval_table">
+       <tr><th>Disapprove</th><th>Name</th><th>email</th></tr>
+<%     @approved.each do |u| %>
+          <tr><td><%= check_box_tag("disapprove[]", u.id) %></td>
+          <td><%= u.name %></td><td><%= u.email %></td></tr>
+<%     end %>
+     </table>
+<% end %>
+  <div class="approval_submit">
+  <%= submit_tag "Change Approvals", class: "submit_button" %>
+  </div>
+
+<%   end %> <!-- form -->
+</div>
+

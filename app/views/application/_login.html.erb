@@ -1,0 +1,22 @@
+  <div id="loginWrapper">
+     <a id="loginMenuIcon" href="#">
+        <span class="LoginIconInner">&nbsp;</span>
+        <span class="LoginIconInner">&nbsp;</span>
+        <span class="LoginIconInner">&nbsp;</span>
+     </a>
+  </div>
+  <nav>
+    <ul id="loginList">
+      <li id="loginMenuCancel"><a href="#">X</a></li>
+    <% if admin_signed_in?  %>
+      <li><%= link_to("logout", destroy_admin_session_path, method: :delete) %></li>
+      <li><%= link_to("edit", edit_admin_registration_path, method: :get) %></li>
+    </ul>
+    <% else %>
+      <li><%= link_to("sign in", new_admin_session_path, method: :get) %></li>
+      <li><%= link_to("register", new_admin_registration_path, method: :get) %></li>
+    <% end %>
+    </ul>
+  </nav>
+</div>
+

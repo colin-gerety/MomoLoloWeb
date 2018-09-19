@@ -1,0 +1,10 @@
+<div id="main_container" class="AdminPage">
+<h1>Admin Actions</h1>
+
+<% if current_admin.is_super_user? %>
+<p><%= link_to 'Approve Admin Requests', approve_admins_path %> 
+- Approve/Disapprove users who have requested permission to be site administrators.
+</p>
+<% end %>
+
+</div>

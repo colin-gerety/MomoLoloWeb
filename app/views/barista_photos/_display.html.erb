@@ -1,0 +1,29 @@
+<div class="PhotoWrapper">
+  <% if !@barista_photo.blank? %>
+    <div class="ImageDisplay">
+      <div>
+        <%= link_to image_tag(@barista_photo.image_url(:thumb).to_s), [@barista, @barista_photo]
+        %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if (barista_summary) %>
+    <div class="BaristaName">
+     <span><%= link_to @barista.first, @barista %></span>
+    </div>
+  <% end %>
+
+  <% if (barista_summary) %>
+    <div class="BaristaTag">
+      <%= @barista.tag_line %>
+    </div>
+  <% end %>
+
+  <% if (!barista_summary) %>
+    <% if (!@barista_photo.title.blank?) %>
+       <div><%= @barista_photo.title %></div>
+    <% end %>
+  <% end %>
+
+</div> <!-- PhotoWrapper -->
