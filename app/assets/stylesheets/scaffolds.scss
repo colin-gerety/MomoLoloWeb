@@ -30,8 +30,8 @@ a {
   }
 
   &:hover {
-    color: #fff;
-    background-color: #000;
+    color: black;
+    background-color: white;
   }
 }
 
@@ -262,8 +262,8 @@ header a:visited, footer a:visited {
   color: #000;
 }
 header a:hover, footer a:hover {
-  color: #000;
-  background-color: #fff;
+  color: black;
+  background-color: white;
 }
 
 #mobileWrapper {
@@ -423,7 +423,7 @@ footer .BigLogo, #socialLinks {
   list-style-type: none;
 }
 
-footer .SocialIcon img {
+.SocialIcon img {
   height: 1.5em;
   margin-left: 2vw;
   margin-right: 2vw;
@@ -477,6 +477,17 @@ section .TopWrapper h2 {
   color: white;
   font-size: 5vw;
   text-decoration: none;
-  padding-bottom: 1.5em;
+  padding-bottom: 1em;
+}
+
+section .TopWrapper h3 {
+  color: white;
+  font-size: 3vw;
+  text-decoration: none;
+  padding-bottom: .5em;
+}
+
+section h3 {
+  font-size: 2.5vw;
 }
 

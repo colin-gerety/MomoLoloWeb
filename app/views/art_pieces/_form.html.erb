@@ -1,4 +1,6 @@
-<%= form_for @art_piece, :html => {:multipart => true} do |f| %>
+<% @art_piece = ArtPiece.new if @art_piece.nil? %>
+<% @artist = @art_piece.artist %>
+<%= form_with model: [Artist, @art_piece], :html => {:multipart => true} do |f| %>
   <% if @art_piece.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@art_piece.errors.count, "error") %> prohibited this art_piece from being saved:</h2>
@@ -13,8 +15,9 @@
 
   <div class="field">
     <%= f.label 'Artist:' %>
-    <%= f.collection_select(:artist_id, Artist.all, :id, :name, :prompt => 'Please select artist') %>
+    <%= f.collection_select(:artist_id, Artist.all, :id, :name, {prompt: 'Please select artist'}.merge(@artist.nil? ? {} : {selected: @artist.id})) %>
   </div>
+
   <div class="field">
     <%= f.label :title %>
     <%= f.text_field :title %>
@@ -22,6 +25,10 @@
   <div class="field">
     <%= f.label :media %>
     <%= f.text_field :media %>
+  </div>
+  <div class="field">
+    <%= f.label :size %>
+    <%= f.text_field :size %>
   </div>
   <div class="field">
     <%= f.label :price %>
@@ -54,25 +61,22 @@
   </div>
   <div class="field">
     <%= f.label :note %>
-    <%= f.text_field :note %>
+    <%= f.text_area :note %>
   </div>
 
   <div class="ImageArea">
-    <div>
-      <%= image_tag @art_piece.image.image_url(:thumb).to_s %>
-    </div>
+    <% if !@art_piece.image.blank? %>
+      <div>
+        <%= image_tag @art_piece.image_url(:thumb).to_s %>
+      </div>
+    <% end %>
     <div class="field">
       <%= f.label :image %>
       <%= f.file_field :image %>
     </div>
   </div>
-  <div class="field">
-    <%= f.label 'Artist:' %>
-    <%= f.collection_select(:artist_id, Artist.all, :id, :name, :prompt => 'Please select artist') %>
-  </div>
 
   <div class="actions">
     <%= f.submit %>
   </div>
-<% end %>
-
+<% end %> <!-- form -->

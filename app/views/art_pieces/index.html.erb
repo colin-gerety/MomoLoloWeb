@@ -32,9 +32,9 @@
         <td><%= art_piece.other_percent %></td>
         <td><%= art_piece.note %></td>
         <td><%= art_piece.artist.name %></td>
-        <td class="action"><%= link_to 'Show', art_piece %></td>
-        <td class="action"><%= link_to 'Edit', edit_art_piece_path(art_piece) %></td>
-        <td class="action"><%= link_to 'Destroy', art_piece, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="action"><%= link_to 'Show', [art_piece.artist, art_piece]  %></td>
+        <td class="action"><%= link_to 'Edit', edit_artist_art_piece_path(art_piece.artist, art_piece) %></td>
+        <td class="action"><%= link_to 'Destroy', [art_piece.artist, art_piece], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -42,4 +42,4 @@
 
 <br>
 
-<%= link_to 'New Art piece', new_art_piece_path %>
+<%= link_to 'New Art piece', new_artist_art_piece_path %>

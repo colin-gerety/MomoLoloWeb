@@ -1,0 +1,41 @@
+<h3>
+  <% if (link_to_artist)  %>
+    <%= link_to @artist.name, @artist %>
+  <% else %>
+    <%= @artist.name %>
+  <% end %>
+  <% if (!@artist.web_site.blank?) %>
+     <a class="SocialIcon"
+       href="<%= @artist.web_site %>"
+       target="_blank">
+       <%= image_tag("wwwIcon.jpg", alt: "web site link") %>
+     </a>
+  <% end %>
+  <% if (!@artist.instagram.blank?) %>
+     <a class="SocialIcon"
+       href="<%= @artist.instagram %>"
+       target="_blank">
+       <%= image_tag("instagramLinkIcon.png", alt: "instagram link") %>
+     </a>
+  <% end %>
+</h3>
+
+<% if admin_signed_in? %>
+  <div class="AdminRegion">
+    <%= link_to 'Edit Artist', edit_artist_path(@artist) %> 
+  </div>
+<% end %>
+
+<% if (show_art && @artist.art_pieces.count > 0) %>
+  <div class="ArtistPhotoDisplay">
+    <div class="PhotoList">
+      <% @artist.art_pieces.each do |piece| %>
+        <% if (piece.currently_hanging || !current_only) %>
+          <% @art_piece = piece %>
+          <%= render partial: 'art_pieces/display', locals: {current_only: current_only, size: 'thumb' } %>
+      <% end %>
+    <% end %>
+  </div> <!-- ArtistPhotoDisplay -->
+<% end %>
+
+

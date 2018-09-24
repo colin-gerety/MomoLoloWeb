@@ -1,6 +1,8 @@
 <h1>Editing Art Piece</h1>
 
-<%= render 'form' %>
+<div class="AdminPage">
+  <%= render 'form' %>
 
-<%= link_to 'Show', @art_piece %> |
-<%= link_to 'Back', art_pieces_path %>
+  <%= link_to 'Show', [@artist, @art_piece] %> |
+</div>
+

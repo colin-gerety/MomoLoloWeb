@@ -9,13 +9,13 @@
   <% end %>
 
   <% if (barista_summary) %>
-    <div class="BaristaName">
+    <div class="field BaristaName">
      <span><%= link_to @barista.first, @barista %></span>
     </div>
   <% end %>
 
   <% if (barista_summary) %>
-    <div class="BaristaTag">
+    <div class="field BaristaTag">
       <%= @barista.tag_line %>
     </div>
   <% end %>

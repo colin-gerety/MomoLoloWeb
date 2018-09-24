@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_19_220006) do
+ActiveRecord::Schema.define(version: 2018_09_20_223417) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.boolean "approved", default: false, null: false
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2018_09_19_220006) do
     t.bigint "artist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "size"
     t.index ["artist_id"], name: "index_art_pieces_on_artist_id"
   end
 

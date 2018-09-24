@@ -29,8 +29,8 @@ class ArtPiecesController < ApplicationController
 
     respond_to do |format|
       if @art_piece.save
-        format.html { redirect_to @art_piece, notice: 'Art piece was successfully created.' }
-        format.json { render :show, status: :created, location: @art_piece }
+        format.html { redirect_to [@art_piece.artist, @art_piece], notice: 'Art piece was successfully created.' }
+        format.json { render :show, status: :created, location: [@artist, @art_piecei] }
       else
         format.html { render :new }
         format.json { render json: @art_piece.errors, status: :unprocessable_entity }
@@ -43,8 +43,8 @@ class ArtPiecesController < ApplicationController
   def update
     respond_to do |format|
       if @art_piece.update(art_piece_params)
-        format.html { redirect_to @art_piece, notice: 'Art piece was successfully updated.' }
-        format.json { render :show, status: :ok, location: @art_piece }
+        format.html { redirect_to [@art_piece.artist, @art_piece], notice: 'Art piece was successfully updated.' }
+        format.json { render :show, status: :ok, location: [@art_piece.artist, @art_piece] }
       else
         format.html { render :edit }
         format.json { render json: @art_piece.errors, status: :unprocessable_entity }
@@ -57,7 +57,7 @@ class ArtPiecesController < ApplicationController
   def destroy
     @art_piece.destroy
     respond_to do |format|
-      format.html { redirect_to art_pieces_url, notice: 'Art piece was successfully destroyed.' }
+      format.html { redirect_to artist_art_ppieces_url, notice: 'Art piece was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -66,10 +66,11 @@ class ArtPiecesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_art_piece
       @art_piece = ArtPiece.find(params[:id])
+      @artist = @art_piece.artist if !@art_piece.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def art_piece_params
-      params.require(:art_piece).permit(:title, :media, :price, :needs_label, :currently_hanging, :momo_percent, :artist_percent, :other_percent, :note, :artist_id, :image)
+      params.require(:art_piece).permit(:title, :media, :price, :needs_label, :currently_hanging, :can_display, :momo_percent, :artist_percent, :other_percent, :note, :artist_id, :image, :size)
     end
 end

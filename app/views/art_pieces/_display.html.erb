@@ -1,0 +1,52 @@
+  <div class="ImageArea">
+    <% if !@art_piece.image.blank? && (admin_signed_in? || @art_piece.currently_hanging) %>
+       <% if (!size.blank? && (size == 'full')) %>
+         <div class="FullImage"><%= image_tag @art_piece.image_url.to_s %></div>
+       <% else %>
+         <div><%= link_to image_tag(@art_piece.image_url(:thumb).to_s), [@artist, @art_piece] %></div>
+       <% end %>
+  <% else %>
+    <div>
+      <%= image_tag("noImageAvailable.jpeg", alt: "no image available ") %>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <span class="label">Title: </span> <span class="value"><%= @art_piece.title %></span>
+  </div>
+
+  <div class="field">
+    <span class="label">Media: </span> <span class="value"><%= @art_piece.media %></span>
+  </div>
+
+  <div class="field">
+    <span class="label">Size: </span> <span class="value"><%= @art_piece.size %></span>
+  </div>
+
+  <div class="field">
+    <span class="label">Price: </span> <span class="value"><%= @art_piece.price %></span>
+  </div>
+
+  <% if (admin_signed_in?) %>
+    <div class="AdminRegion">
+      <div class="field">
+        <span class="label"><%= @art_piece.needs_label ? "Needs Label" : "Has Label" %></span>
+      </div>
+      <div class="field">
+        <span class="label"><%= @art_piece.currently_hanging ? "Currently Hanging" : "Not Hanging" %></span>
+      </div>
+
+  <div class="field">
+    <span class="label">Momo Lolo %: </span> <span class="value"><%= @art_piece.momo_percent %></span>
+    <span class="label">Artist %: </span> <span class="value"><%= @art_piece.artist_percent %></span>
+    <span class="label">Other %: </span> <span class="value"><%= @art_piece.other_percent %></span>
+  </div>
+
+  <div class="field TextArea">
+    <span class="label">Note: </span> <span class="value"><%= @art_piece.note.blank? ? "" :  @art_piece.note %></span>
+  </div>
+    <div><%= link_to "Edit Art Piece", edit_artist_art_piece_url(@artist, @art_piece) %></div>
+    </div> <!-- AdminRegion -->
+  <% end %>
+</div> <!-- ImageArea -->
+

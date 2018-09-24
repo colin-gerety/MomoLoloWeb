@@ -3,12 +3,14 @@
   <div class="PhotoFilter">
     <h1>Fort Collins Art</h1>
     <h2>See a sample of what we have in our shop</h2>
+    <h3>(Bad photos of great art)</h3>
   </div>
 </div> <!-- TopWrapper -->
 
 <% if !@artists.blank? %>
 <%   @artists.each do |artist| %>
-     <%= render partial: "artist", locals: { artist: artist } %>
+       <% @artist = artist %>
+       <%= render partial: 'artists/display', locals: {current_only: true, show_art: true, link_to_artist: true} %>
 <%   end %>
 <% end %>
 

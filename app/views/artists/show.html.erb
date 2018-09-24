@@ -1,24 +1,45 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @artist.name %>
-</p>
+<div id="artists" class="TopWrapper">
+  <div class="PhotoFilter">
+    <h1>
+      <%= @artist.name %>
+    </h1>
+  </div>
+</div>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @artist.phone %>
-</p>
+<h3>
+<% if (!@artist.web_site.blank?) %>
+   <a class="SocialIcon"
+     href="<%= @artist.web_site %>"
+     target="_blank">
+     <%= image_tag("wwwIcon.jpg", alt: "web site link") %>
+     Web Site
+   </a>
+<% end %>
+<% if (!@artist.instagram.blank?) %>
+   <a class="SocialIcon"
+     href="<%= @artist.instagram %>"
+     target="_blank">
+     <%= image_tag("instagramLinkIcon.png", alt: "instagram link") %>
+   </a>
+<% end %>
+</h3>
 
-<p>
-  <strong>Web site:</strong>
-  <%= @artist.web_site %>
-</p>
+<% if (@artist.art_pieces.count > 0) %>
+  <div class="PhotoList">
+    <% @artist.art_pieces.each do |piece| %>
+       <% if admin_signed_in? || piece.currently_hanging %>
+         <% @art_piece = piece %>
+           <%= render partial: 'art_pieces/display', locals: {current_only: false, size: 'thumb' } %>
+      <% end %>
+    <% end %>
+  </div> <!-- Art Pieces -->
+<% end %>
 
-<p>
-  <strong>Email:</strong>
-  <%= @artist.email %>
-</p>
 
-<%= link_to 'Edit', edit_artist_path(@artist) %> |
-<%= link_to 'Back', artists_path %>
+<% if admin_signed_in? %>
+  <div class="AdminRegion">
+    <%= link_to 'Edit', edit_artist_path(@artist) %>
+  </div>
+<% end %>

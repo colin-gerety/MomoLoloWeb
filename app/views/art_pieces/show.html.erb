@@ -1,61 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<div>
-  <%= image_tag @art_piece.image.image_url(:thumb).to_s if ! @art_piece.image.blank? %>
-</div>
-
-<div>
-  <strong>Artist:</strong>
-  <%= @art_piece.artist.name %>
-</div>
-
-<div>
-  <strong>Title:</strong>
-  <%= @art_piece.title %>
-</div>
-
-<div>
-  <strong>Media:</strong>
-  <%= @art_piece.media %>
-</div>
-
-<div>
-  <strong>Price:</strong>
-  <%= @art_piece.price %>
-</div>
-
-<div class="field_group">
-  <div>
-    <strong>Needs label:</strong>
-    <%= @art_piece.needs_label %>
-  </div>
-
-  <div>
-    <strong>Currently hanging:</strong>
-    <%= @art_piece.currently_hanging %>
+<div id="artists" class="TopWrapper">
+  <div class="PhotoFilter">
+    <h1>
+      <%= @artist.name %>
+    </h1>
   </div>
 </div>
 
-<div class="field_group">
-  <div>
-    <strong>Momo percent:</strong>
-    <%= @art_piece.momo_percent %>
-  </div>
-  <div>
-    <strong>Artist percent:</strong>
-    <%= @art_piece.artist_percent %>
-  </div>
-  <div>
-    <strong>Other percent:</strong>
-    <%= @art_piece.other_percent %>
-  </div>
-</div>
+<%= render partial: 'art_pieces/display', locals: {current_only: false, size: 'full'} %>
 
-<div>
-  <strong>Notes:</strong>
-  <%= @art_piece.note %>
-</div>
-</div>
+<div><%= link_to @artist.name, @artist %></div>
 
-<%= link_to 'Edit', edit_art_piece_path(@art_piece) %> |
-<%= link_to 'Back', art_pieces_path %>

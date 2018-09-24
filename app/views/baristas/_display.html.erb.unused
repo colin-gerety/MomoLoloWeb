@@ -1,0 +1,39 @@
+  
+<div class="field">
+  <% if admin_signed_in? %>
+    <%=  @barista.full_name %>
+  <% else %>
+    <%= @barista.first  %>
+  <% end %>
+</div>
+<% if admin_signed_in? %>
+  <div class="AdminRegion">
+    <%= link_to 'Edit', edit_barista_path(@barista) %>
+  </div>
+<% end %>
+
+  <div class="field">
+    <%= form.text_field :tag_line, id: :tag_line %>
+  </div>
+
+  <h1>Photos:</h1>
+  <% if admin_signed_in? %>
+    <div class="AdminRegion">
+      <%= link_to 'New Barista Photo', new_barista_barista_photo_path(@barista) %>
+    </div>
+  <% end %>
+  <% if @barista.barista_photos.count > 0 %>
+    <div class="PhotoList">
+      <% @barista.barista_photos.each do |photo| %>
+        <div class="PhotoWrapper">
+          <% @barista_photo = photo %>
+          <%= render partial: 'barista_photos/display', locals: {barista_summary: false} %>
+        </div> <!-- barista photo -->
+      <% end %>
+    </div> <!-- EditPhotoList -->
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

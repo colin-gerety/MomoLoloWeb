@@ -1,6 +1,13 @@
-<h1>Editing Artist</h1>
+<div id="art" class="TopWrapper">
+  <div class="PhotoFilter">
+    <h2>Artist Info  - <%= @artist.name %></h2>
+  </div>
+</div>
 
+<div class="AdminPage">
 <%= render 'form', artist: @artist %>
 
 <%= link_to 'Show', @artist %> |
 <%= link_to 'Back', artists_path %>
+</div>
+

@@ -1,5 +1,5 @@
 <% @barista_photo = BaristaPhoto.new if @barista_photo.nil? %>
-<% @barista = @barista_photo.barista %>
+<% @barista = @barista_photo.barista if @barista.nil? %>
 <%= form_with(model: [Barista, @barista_photo], local: true) do |form| %>
   <% if @barista_photo.errors.any? %>
     <div id="error_explanation">
