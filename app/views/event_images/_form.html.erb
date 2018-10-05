@@ -1,0 +1,40 @@
+<% @event_image = EventImage.new if @event_image.nil? %>
+<%= form_with(model: event_image, local: true) do |form| %>
+  <% if event_image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(event_image.errors.count, "error") %> prohibited this event_image from being saved:</h2>
+
+      <ul>
+      <% event_image.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="PhotoWrapper">
+  <% if !@event_image.blank? %>
+    <div>
+      <%= image_tag @event_image.image_url(:thumb).to_s %>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+</div> <!-- PhotoWrapper -->
+<% end %>

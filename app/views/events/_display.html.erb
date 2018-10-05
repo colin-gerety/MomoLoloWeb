@@ -1,0 +1,52 @@
+<% @event = Event.new if @event.nil? %>
+<div class="PhotoWrapper">
+
+<% if (size == 'full') %>
+<div class="Full">
+<% end %>
+
+  <% if !@event.event_image.blank? %>
+    <div class="ImageDisplay">
+      <div>
+        <% if (!size.blank? && size == 'full') %>
+          <%= image_tag(@event.event_image.image_url.to_s) %>
+        <% else %>
+          <%= link_to image_tag(@event.event_image.image_url(:thumb).to_s), @event %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+<% if @event.recurrent == true %>
+  <div class="field EventDate">
+    <div class="RecurrenceDescription">
+      <%= @event.recurrence_description %>
+    </div>
+    <div class="RecurrenceTime">
+      <%= sanitize(html_recurrent_event_time(@event)) %>
+    </div>
+  </div> <!-- EventDate -->
+<% else %>
+  <div class="field EventDate">
+     <%= sanitize(html_event_date(@event)) %>
+  </div>
+<% end %>
+
+  <div class="field EventTitle">
+     <%= @event.title %>
+  </div>
+
+  <div class="field Description">
+    <%= @event.description if !@event.description.blank?  %>
+  </div>
+
+<% if (size == 'full') %>
+</div> <!--  Full -->
+<% end %>
+
+  <% if (admin_signed_in?) %>
+    <div class="AdminRegion">
+       <%= link_to "Edit Event", edit_event_url(@event) %>
+    </div> <!-- AdminRegion -->
+  <% end %> 
+</div> <!-- PhotoWrapper -->

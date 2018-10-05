@@ -1,0 +1,65 @@
+// Place all the styles related to the Events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#events.TopWrapper {
+  background-image: url(asset-path('sparkler.jpg'));
+}
+
+#eventIndex {
+  background-image: url(asset-path('sparkler.jpg'));
+}
+
+#eventIndex h1, #eventIndex h2, #eventIndex h3{
+  color: white;
+}
+
+#eventIndex  .PhotoFilter {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0, 0.3);
+}
+
+#eventIndex  .PhotoWrapper {
+  background-color: white;
+}
+
+.EventDateTime .Date, .EventDateTime .Time, .EventDateTime .StartDate, .EventDateTime .EndDate, .EventDate {
+  display: block;
+  font-weight: bold;
+}
+
+.EventDateTime .Date, .EventDateTime .Time {
+  display: block;
+  font-weight: bold;
+}
+
+.EventSummary .Full {
+  font-size: 5vw;
+}
+
+.EventSummary .Full img {
+  width: 80%;
+}
+
+#recurrentEvent, #nonRecurrentEvent {
+  margin-left: 5em;
+}
+
+#recurrentEvent.ShowFields {
+  display: block;
+}
+
+#recurrentEvent.HideFields {
+  display: none;
+}
+
+#nonRecurrentEvent.ShowFields {
+  display: block;
+}
+
+#nonRecurrentEvent.HideFields {
+  display: none;
+}
+

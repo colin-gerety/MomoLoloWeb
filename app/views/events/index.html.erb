@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<div id="events" class="TopWrapper">
+  <h1>Upcoming Events</h1>
+</div> <!-- Top Wrapper -->
+
+<div id="eventIndex">
+<div class="PhotoFilter">
+  <% if (!@events.blank?) %>
+    <h3>One Time Events</h3>
+    <div class="PhotoList EventSummary">
+      <% @events.each do |event| %>
+         <% @event = event %>
+         <%= render partial: 'events/display', locals: {size: 'thumb'} %>
+      <% end %>
+    </div> <!-- PhotoList -->
+  <% end %>
+  
+  <% if (!@recurrent_events.blank?) %>
+    <h3>Recurrent Events</h3>
+    <div class="PhotoList EventSummary">
+      <% @recurrent_events.each do |event| %>
+         <% @event = event %>
+         <%= render partial: 'events/display', locals: {size: 'thumb'} %>
+      <% end %>
+    </div> <!-- PhotoList -->
+  <% end %>
+</div> <!-- PhotoFiter -->
+</div> <!-- eventIndex -->  
+
+<% if admin_signed_in? %>
+  <div class="AdminRegion">
+    <%= link_to 'New Event', new_event_path %>
+  </div>
+<% end %>
+

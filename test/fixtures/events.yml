@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start: 2018-09-25 14:21:58
+  end: 2018-09-25 14:21:58
+  title: MyString
+  description: MyText
+  event_image: one
+
+two:
+  start: 2018-09-25 14:21:58
+  end: 2018-09-25 14:21:58
+  title: MyString
+  description: MyText
+  event_image: two

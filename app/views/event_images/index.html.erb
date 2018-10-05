@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<div id="eventImages" class="TopWrapper">
+
+<h1>Event Images</h1>
+
+</div> <!-- Top Wrapper -->
+
+<div class="PhotoList EventImageSummary">
+  <% @event_images.each do |event_image| %>
+    <% @event_image = event_image %>
+    <%= render partial: 'event_images/display', locals: {size: "thumb" } %>
+  <% end %>
+</div>
+
+<% if admin_signed_in? %>
+  <div class="AdminRegion">
+    <%= link_to 'New Event Image', new_event_image_path %>
+  </div>
+<% end %>

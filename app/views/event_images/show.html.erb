@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<div class="NoTopImage TopWrapper">
+  <h1>
+    <%= @event_image.title %>
+  </h1>
+</div>
+
+<%= render partial: 'event_images/display', locals: {size: "full" }  %>
+
+

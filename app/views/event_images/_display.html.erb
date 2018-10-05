@@ -1,0 +1,29 @@
+<div class="PhotoWrapper">
+    <% if !@event_image.image.blank? && (admin_signed_in? || @event_image.can_display) %>
+       <% if (!size.blank? && (size == 'full')) %>
+         <div class="FullImage"><%= image_tag @event_image.image_url.to_s %></div>
+       <% else %>
+         <div><%= link_to image_tag(@event_image.image_url(:thumb).to_s), [@artist, @event_image] %></div>
+       <% end %>
+  <% else %>
+    <div>
+      <%= image_tag("noImageAvailable.jpeg", alt: "no image available ") %>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <span class="label">Title: </span> <span class="value"><%= @event_image.title %></span>
+  </div>
+
+  <div class="field">
+    <div class="label">Description: </div> 
+    <span class="value"><%= @event_image.description %></span>
+  </div>
+
+  <% if (admin_signed_in?) %>
+    <div class="AdminRegion">
+      <div><%= link_to "Edit Event Image", edit_event_image_url(@event_image) %></div>
+    </div>
+  <% end %> 
+</div> <!-- PhotoWrapper -->
+

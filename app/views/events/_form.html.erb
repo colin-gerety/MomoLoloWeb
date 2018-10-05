@@ -1,0 +1,87 @@
+<% @event = Event.new if @event.nil? %>
+<%= form_with(model: @event, local: true) do |form| %>
+  <% if event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :event_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start %>
+    <%= form.time_select :event_start %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :end %>
+    <%= form.time_select :event_end %>
+  </div>
+
+  <div class="field">
+    <%= form.radio_button :recurrent, 0  %>
+    <%= form.label "One Time Event" %>
+  </div>
+  <div id="nonRecurrentEvent">
+    <div class="field">
+      <%= form.label :start %>
+      <%= form.date_select :event_start %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :event_end %>
+      <%= form.date_select :event_end %>
+    </div>
+ </div> <!-- nonRecurrentEvent -->
+
+  <div class="field">
+    <%= form.radio_button :recurrent, 1  %>
+    <%= form.label "Recurring Event" %>
+  </div>
+
+  <div id="recurrentEvent">
+    <div class="field">
+     <%= form.check_box :active %> <%= form.label :active %>
+    </div>
+    <div class="field">
+      <%= form.label "How often does the event occur?" %>
+      <%= form.text_field :recurrence_description %>
+    </div>
+    <div class="field">
+      <%= form.label "About how many days between occurences?" %>
+      <%= form.number_field :recurrence_days %>
+    </div>
+  </div> <!-- recurrentEvent -->
+
+  <h3>Image for the event</h3>
+  <div class="NewPhotoLink">
+    <%= link_to 'Create New Event Image', new_event_image_url  %>
+  </div>
+  <div class="PhotoList">
+    <% EventImage.all.each do |ei| %>
+      <div class="PhotoWrapper">
+        <%= form.radio_button :event_image_id, ei.id  %>
+        <%= image_tag ei.image_url(:thumb).to_s %>
+      </div>
+    <% end %>
+  </div> <!-- PhotoList -->
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
