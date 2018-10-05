@@ -63,6 +63,26 @@ function hideLoginMenu(event) {
  event.preventDefault();
 }
 
+function adjustFormEventRecurrence(event) {
+  var selectedField = '#recurrentEvent';
+  var unSelectedField = '#nonRecurrentEvent';
+
+  switch ($('input[name=event\\[recurrent\\]]:checked').val()) {
+    case 'true':
+      break;
+    case 'false':
+      selectedField = '#nonRecurrentEvent';
+      unSelectedField = '#recurrentEvent';
+      break;
+    default:
+      alert("Improper value sent to event radio button."); 
+  };
+  $(selectedField).removeClass("HideFields");
+  $(selectedField).addClass("ShowFields");
+  $(unSelectedField).removeClass("ShowFields");
+  $(unSelectedField).addClass("HideFields");
+}
+
 function resizeHandler(event) {
  $("#appBlocker").removeClass("BlockApp");
  $("#appBlocker").removeClass("EnableApp");
@@ -76,7 +96,15 @@ function resizeHandler(event) {
  $("#menuList").removeClass("HideMenuList");
 }
 
-$(document).ready(function() {
+function onReady() {
+  $("#mobileWrapper").click(showMobileMenu);
+  $("#mobileMenuCancel").click(hideMobileMenu);
+  $(window).resize(resizeHandler);
+  $("#loginMenuIcon").click(showLoginMenu);
+  $("#loginMenuCancel").click(hideLoginMenu);
+
+  $('input[name=event\\[recurrent\\]]').change(adjustFormEventRecurrence);
+
   var owl = $('.owl-carousel');
   owl.owlCarousel({
     items: 4,
@@ -88,13 +116,15 @@ $(document).ready(function() {
     autoplayTimeout: 3000,
     autoplayHoverPause: true
   });
+}
+
+$( document ).on('turbolinks:load', function() {
+  onReady();
 })
 
-$(function() {
- $("#mobileWrapper").click(showMobileMenu);
- $("#mobileMenuCancel").click(hideMobileMenu);
- $(window).resize(resizeHandler);
- $("#loginMenuIcon").click(showLoginMenu);
- $("#loginMenuCancel").click(hideLoginMenu);
-});
+
+$(document).ready(function() {
+  /* onReady();  only call in turbolinks:load */
+})
+
 

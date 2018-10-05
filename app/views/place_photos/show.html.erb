@@ -1,9 +1,8 @@
-<div class="PlacePhoto">
+<div class="PhotoWrapper">
     <figure class="ImageArea">
       <%= image_tag @place_photo.image_url(:thumb).to_s %>
       <figcaption><%= @place_photo.title %></figcaption>
     </figure>
-<div>
 
 <% if !@place_photo.note.blank? %>
   <div class="field">
@@ -20,4 +19,4 @@
 <%= link_to 'Edit', edit_place_place_photo_path(@place_photo.place_id, @place_photo.id) %> |
 <%= link_to 'Back', place_place_photos_path(@place_photo.place_id, @place_photo.id) %>
 
-</div> <!-- PlacePhoto -->
+</div> <!-- PhotoWrapper -->

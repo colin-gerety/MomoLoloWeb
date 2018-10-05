@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_20_223417) do
+ActiveRecord::Schema.define(version: 2018_10_04_173036) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.boolean "approved", default: false, null: false
@@ -84,6 +84,30 @@ ActiveRecord::Schema.define(version: 2018_09_20_223417) do
     t.string "tag_line"
   end
 
+  create_table "event_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "event_start"
+    t.datetime "event_end"
+    t.string "title"
+    t.text "description"
+    t.bigint "event_image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "recurrent"
+    t.string "recurrence_description"
+    t.integer "recurrence_days"
+    t.boolean "active", default: true
+    t.index ["active"], name: "index_events_on_active"
+    t.index ["event_image_id"], name: "index_events_on_event_image_id"
+  end
+
   create_table "place_photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "image"
     t.string "title"
@@ -105,5 +129,6 @@ ActiveRecord::Schema.define(version: 2018_09_20_223417) do
 
   add_foreign_key "art_pieces", "artists"
   add_foreign_key "barista_photos", "baristas"
+  add_foreign_key "events", "event_images"
   add_foreign_key "place_photos", "places"
 end

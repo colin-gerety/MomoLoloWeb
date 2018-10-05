@@ -1,5 +1,5 @@
-  <div class="ImageArea">
-    <% if !@art_piece.image.blank? && (admin_signed_in? || @art_piece.currently_hanging) %>
+  <div class="PhotoWrapper">
+    <% if !@art_piece.image.blank? && (admin_signed_in? || @art_piece.can_display) %>
        <% if (!size.blank? && (size == 'full')) %>
          <div class="FullImage"><%= image_tag @art_piece.image_url.to_s %></div>
        <% else %>
@@ -48,5 +48,5 @@
     <div><%= link_to "Edit Art Piece", edit_artist_art_piece_url(@artist, @art_piece) %></div>
     </div> <!-- AdminRegion -->
   <% end %>
-</div> <!-- ImageArea -->
+</div> <!-- PhotoWrapper -->
 

@@ -1,11 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <div id="baristas" class="TopWrapper">
-
-<h1>Meet The Baristas</h1>
-
-<h2>Some of the nicest people ever</h2>
-
+  <h1>Meet The Baristas</h1>
+  <h2>Some of the nicest people ever</h2>
 </div> <!-- Top Wrapper -->
 
 <div class="PhotoList BaristaSummary">
@@ -18,7 +15,8 @@
 </div> <!-- PhotoList -->
 
 <% if admin_signed_in? %>
-<div class="AdminRegion">
-<%= link_to 'New Barista', new_barista_path %>
-</div>
+  <div class="AdminRegion">
+    <%= link_to 'New Barista', new_barista_path %>
+  </div>
 <% end %>
+

@@ -1,5 +1,7 @@
 <% @art_piece = ArtPiece.new if @art_piece.nil? %>
 <% @artist = @art_piece.artist %>
+
+<div class="PhotoWrapper">
 <%= form_with model: [Artist, @art_piece], :html => {:multipart => true} do |f| %>
   <% if @art_piece.errors.any? %>
     <div id="error_explanation">
@@ -64,7 +66,6 @@
     <%= f.text_area :note %>
   </div>
 
-  <div class="ImageArea">
     <% if !@art_piece.image.blank? %>
       <div>
         <%= image_tag @art_piece.image_url(:thumb).to_s %>
@@ -74,9 +75,9 @@
       <%= f.label :image %>
       <%= f.file_field :image %>
     </div>
-  </div>
 
   <div class="actions">
     <%= f.submit %>
   </div>
+</div> <!-- PhotoWrapper -->
 <% end %> <!-- form -->
