@@ -1,6 +1,6 @@
 <% @place_photo = PlacePhoto.new if @place_photo.nil? %>
 <% @place = @place_photo.place.blank? ? Place.find(1) : @place_photo.place %>
-<%= form_with(model: [Place, @place_photo], local: true) do |f| %>
+<%= form_with(model: [@place, @place_photo], local: true) do |f| %>
   <% if @place_photo.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@place_photo.errors.count, "error") %> prohibited this place photo from being saved:</h2>
@@ -17,6 +17,8 @@
       <%= f.label 'Place:' %>
       <%= f.collection_select(:place_id, Place.all, :id, :name, {prompt: 'Please select place', selected: @place.id}) %>
     </div>
+  <% else %>
+    <%= f.hidden_field :place_id, value: @place.id %>
   <% end %>
 
   <% if @place_photo.image.blank? %>

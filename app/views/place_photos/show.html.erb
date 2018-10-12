@@ -1,22 +1,8 @@
-<div class="PhotoWrapper">
-    <figure class="ImageArea">
-      <%= image_tag @place_photo.image_url(:thumb).to_s %>
-      <figcaption><%= @place_photo.title %></figcaption>
-    </figure>
-
-<% if !@place_photo.note.blank? %>
-  <div class="field">
-    <span class="label">Note:</span>
-    <span class="value"><%= @place_photo.note %></span>
+<div id="artists" class="TopWrapper">
+  <div class="PhotoFilter">
+    <h1><%= @place_photo.title %></h1>
   </div>
-<% end %>
+</div>
 
-  <div class="field">
-    <span class="label">Can Display:</span>
-    <span class="value"><%= @place_photo.can_display ? 'true' : 'false'  %></span>
-  </div>
+<%= render partial: 'place_photos/display', locals: { size: 'full'} %>
 
-<%= link_to 'Edit', edit_place_place_photo_path(@place_photo.place_id, @place_photo.id) %> |
-<%= link_to 'Back', place_place_photos_path(@place_photo.place_id, @place_photo.id) %>
-
-</div> <!-- PhotoWrapper -->

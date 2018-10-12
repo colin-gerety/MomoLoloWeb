@@ -12,7 +12,7 @@
   </div>
 <% end %>
 
-  <div class="field">
+  <div class="field Description">
     <%= form.text_field :tag_line, id: :tag_line %>
   </div>
 

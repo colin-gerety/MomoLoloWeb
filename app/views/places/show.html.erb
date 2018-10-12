@@ -40,10 +40,11 @@
 </div> <!-- locationWrapper -->
 </div> <!-- location -->
 <% if @place_display_photos.count > 0 %>
-<div class="owl-carousel owl-theme">
-  <% @place_display_photos.each do |photo| %>
-     <%= image_tag(photo.image_url(:thumb).to_s) %>
-  <% end %>
-</div> <!-- carousel -->
+  <div class="owl-carousel owl-theme">
+    <% @place_display_photos.each do |photo| %>
+       <%= image_tag(photo.image_url(:thumb).to_s) %>
+    <% end %>
+  </div> <!-- carousel -->
+  <div id="morePictures"><%= link_to "More Pictures", place_place_photos_path(@place) %></div>
 <% end %> 
 

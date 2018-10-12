@@ -2,7 +2,7 @@
 <header>
   <div id="logoBlock">
     <div class="BigLogo" id="headerLogo">
-       <a href="/" title="Momo Lolo"><span>Momo Lolo</span></a>
+       <a href="<%= root_path %>" title="Momo Lolo"><span>Momo Lolo</span></a>
     </div>					
     <div id="tagLine">
        <span>The Friendliest Coffee House in Fort Collins</span>
@@ -18,9 +18,9 @@
   <nav>
     <ul id="menuList">
       <li id="mobileMenuCancel"><a href="#">X</a></li>
-      <li><%= link_to "Upcoming Events", '/events' %></li>
-      <li><%= link_to "Art in Our Shop", '/current_art' %></li>
-      <li><%= link_to "Meet our Baristas", '/baristas' %></li>
+      <li><%= link_to "Upcoming Events", events_path  %></li>
+      <li><%= link_to "Art in Our Shop", current_art_index_path %></li>
+      <li><%= link_to "Meet our Baristas", baristas_path %></li>
       <!-- li><a href=#">What People Are Saying</a></li -->
     </ul>
   </nav>

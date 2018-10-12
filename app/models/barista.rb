@@ -1,5 +1,5 @@
 class Barista < ApplicationRecord
-  default_scope { includes(:barista_photos).order("barista_photos.updated_at DESC").references(:barista_photos) }
+  default_scope { includes(:barista_photos).references(:barista_photos) }
   
   has_many :barista_photos, dependent: :destroy, inverse_of: :barista
   accepts_nested_attributes_for :barista_photos, allow_destroy: true, reject_if: proc {|attributes| attributes[:first].blank || attributes[:last].blank?}

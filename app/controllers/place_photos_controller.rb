@@ -1,11 +1,15 @@
 class PlacePhotosController < ApplicationController
-  before_action :set_place_photo, only: [:show, :edit, :update, :destroy]
-  /* before_action :authenticate_admin!, :except => [:show, :index] */
+  before_action :set_place_photo
+  # before_action :authenticate_admin!, :except => [:show, :index]
 
   # GET /place_photos
   # GET /place_photos.json
   def index
-    @place_photos = PlacePhoto.all
+    if (admin_signed_in?)
+      @place_photos = @place.place_photos
+    else
+      @place_photos = @place.place_photos.where(can_display: true)
+    end
   end
 
   # GET /place_photos/1
@@ -65,8 +69,24 @@ class PlacePhotosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_place_photo
-      @place_photo = PlacePhoto.find(params[:id])
-      @place = @place_photo.place if @place_photo.place
+logger.info "Inside set_place_photo"
+      if (!params[:id].blank?)
+        @place_photo = PlacePhoto.find(params[:id])
+        @place = @place_photo.place
+logger.info "found place_photo id and looked up photo and place. Place = #{@place.id.to_s} #{@place_photo.id.to_s}"
+      end
+      if (@place.blank? && !params[:place_id].blank?)
+        @place = Place.find(params[:place_id])
+logger.info "No photo id, but there is a place id Place = #{@place.id.to_s}"
+      end
+      if (@place.blank?)
+        @place = Place.all.first;
+logger.info "Use the default place Place = #{@place.id.to_s}"
+      end
+      if (@place_photo.blank?) 
+        @place_photos = @place.place_photos
+logger.info "Setting place photos from place Place = #{@place.id.to_s}"
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

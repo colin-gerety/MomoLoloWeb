@@ -1,0 +1,37 @@
+
+<div class="PhotoWrapper">
+  <% if !@place_photo.image.blank? %>
+       <% if (!size.blank? && (size == 'full')) %>
+         <div class="FullImage ImageDisplay"><%= image_tag @place_photo.image_url.to_s %></div>
+       <% else %>
+         <div class="ImageDisplay"><%= link_to image_tag(@place_photo.image_url(:thumb).to_s), [@place, @place_photo] %></div>
+       <% end %>
+  <% end %>
+
+  <% if (admin_signed_in?) %>
+    <% if (@place_photo.can_display == true) %>
+      <div class="field AdminRegion">Photo will display.</div> 
+    <% else %>
+      <div class="field AdminRegion">Photo will NOT display.</div> 
+    <% end %>
+  <% end %>
+  
+  <% if (!@place_photo.title.blank?) %>
+    <div class="field">
+      <%= @place_photo.title %>
+    </div>
+  <% end %>
+  
+  <% if (!@place_photo.note.blank?) %>
+    <div class="field">
+      <span class="label">Note: </span><%= place_photo.note %></span>
+    </div>
+  <% end %>
+
+  <% if (admin_signed_in?) %>
+    <div class="AdminRegion">
+      <div><%= link_to 'Edit', edit_place_place_photo_path(@place_photo.place, @place_photo) %></div>
+    </div>
+  <% end %>
+</div> <!-- PhotoWrapper -->
+

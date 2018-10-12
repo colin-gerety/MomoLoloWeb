@@ -16,5 +16,7 @@ module MomoLoloWeb
     # -- all .rb files in that directory are automatically loaded.
 
     config.active_record.time_zone_aware_types = [:datetime, :time]
+    config.relative_url_root = "/test"
+    config.action_controller.relative_url_root = "/test"
   end
 end

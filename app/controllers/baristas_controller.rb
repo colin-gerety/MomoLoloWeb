@@ -5,7 +5,11 @@ class BaristasController < ApplicationController
   # GET /baristas
   # GET /baristas.json
   def index
-    @baristas = Barista.all
+    if (admin_signed_in?)
+      @baristas = Barista.all.order(first: :asc)
+    else
+      @baristas = Barista.where(currently_working: true).order(first: :asc)
+    end
   end
 
   # GET /baristas/1
