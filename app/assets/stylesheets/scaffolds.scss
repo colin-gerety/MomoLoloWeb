@@ -137,6 +137,7 @@ header {
     display: none;
   }
   .PhotoWrapper {
+    max-width: 90vw;
     margin: 0em 0em .5em 0em;
     padding: .2em;
   }
@@ -183,9 +184,18 @@ header {
     display: none;
   }
   .PhotoWrapper {
+    max-width: 230px;
     margin: .5em .2em .5em 2em;
     padding: .2em;
   }
+}
+
+.PhotoWrapper.FullImage {
+    max-width: 90vw;
+}
+
+.PhotoWrapper.FullImage img {
+    max-width: 80vw;
 }
 
 #loginWrapper {
@@ -449,12 +459,12 @@ footer p {
 }
 
 .PhotoWrapper .field {
-  margin-left: 0em;
-  margin-right: 0em;
+  margin: auto;
 }
-
 .PhotoWrapper .Description {
-  max-width: 20em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  text-align: left;
 }
 
 section .TopWrapper {

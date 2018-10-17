@@ -7,11 +7,17 @@
   </div>
 </div> <!-- TopWrapper -->
 
+<% if admin_signed_in? %>
+  <div class="AdminRegion">
+    <%= link_to 'Show All Art', artists_path  %>
+  </div>
+<% end %>
+
 <% if !@artists.blank? %>
-<%   @artists.each do |artist| %>
+  <% @artists.each do |artist| %>
        <% @artist = artist %>
        <%= render partial: 'artists/display', locals: {current_only: true, show_art: true, link_to_artist: true} %>
-<%   end %>
+  <% end %>
 <% end %>
 
 </div> <!-- artWrapper -->

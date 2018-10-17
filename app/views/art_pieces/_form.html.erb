@@ -1,5 +1,5 @@
 <% @art_piece = ArtPiece.new if @art_piece.nil? %>
-<% @artist = @art_piece.artist %>
+<% @artist = @art_piece.artist if @artist.blank? %>
 
 <div class="PhotoWrapper">
 <%= form_with model: [Artist, @art_piece], :html => {:multipart => true} do |f| %>
@@ -43,8 +43,12 @@
       <%= f.label :needs_label %>
     </div>
     <div class="field">
+      <%= f.check_box :can_display %>
+      <%= f.label "Photo is good enough to display" %>
+    </div>
+    <div class="field">
       <%= f.check_box :currently_hanging %>
-      <%= f.label "Currently Hanging?" %>
+      <%= f.label "Currently Hanging" %>
     </div>
   </div>
   <div class="field_group">

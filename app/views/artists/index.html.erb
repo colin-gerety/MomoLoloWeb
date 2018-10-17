@@ -1,33 +1,21 @@
 <p id="notice"><%= notice %></p>
+<div id="art" class="TopWrapper">
+  <div class="PhotoFilter">
+    <h1>Momo Lolo Art</h1>
+    <h2>Everybody and Everything We've Had in the Shop</h2>
+  </div>
+</div> <!-- TopWrapper -->
 
-<h1>Artists</h1>
+<div>
+  <%= link_to 'Current Art', current_art_index_path  %>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Phone</th>
-      <th>Web site</th>
-      <th>Email</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% if !@artists.blank? %>
+  <% @artists.each do |artist| %>
+       <% @artist = artist %>
+       <%= render partial: 'artists/display', locals: {current_only: false, show_art: true, link_to_artist: true} %>
+  <% end %>
+<% end %>
 
-  <tbody>
-    <% @artists.each do |artist| %>
-      <tr>
-        <td><%= artist.name %></td>
-        <td><%= artist.phone %></td>
-        <td><%= artist.web_site %></td>
-        <td><%= artist.email %></td>
-        <td><%= link_to 'Show', artist %></td>
-        <td><%= link_to 'Edit', edit_artist_path(artist) %></td>
-        <td><%= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+</div> <!-- artWrapper -->
 
-<br>
-
-<%= link_to 'New Artist', new_artist_path %>

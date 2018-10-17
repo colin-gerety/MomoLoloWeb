@@ -1,8 +1,11 @@
-
-<div class="PhotoWrapper">
+<% if (!size.blank? && (size == 'full')) %>
+  <div class="PhotoWrapper FullImage">
+<% else %>
+  <div class="PhotoWrapper">
+<% end %>
   <% if !@place_photo.image.blank? %>
        <% if (!size.blank? && (size == 'full')) %>
-         <div class="FullImage ImageDisplay"><%= image_tag @place_photo.image_url.to_s %></div>
+         <div class="ImageDisplay"><%= image_tag @place_photo.image_url.to_s %></div>
        <% else %>
          <div class="ImageDisplay"><%= link_to image_tag(@place_photo.image_url(:thumb).to_s), [@place, @place_photo] %></div>
        <% end %>

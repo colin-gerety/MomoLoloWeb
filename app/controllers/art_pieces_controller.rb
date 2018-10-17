@@ -1,5 +1,6 @@
 class ArtPiecesController < ApplicationController
   before_action :set_art_piece, only: [:show, :edit, :update, :destroy]
+  before_action :set_artist, only: [:new]
   before_action :authenticate_admin!, :except => [:show, :index]
 
   # GET /art_pieces
@@ -29,7 +30,7 @@ class ArtPiecesController < ApplicationController
 
     respond_to do |format|
       if @art_piece.save
-        format.html { redirect_to [@art_piece.artist, @art_piece], notice: 'Art piece was successfully created.' }
+        format.html { redirect_to [@art_piece.artist], notice: 'Art piece was successfully created.' }
         format.json { render :show, status: :created, location: [@artist, @art_piecei] }
       else
         format.html { render :new }
@@ -66,7 +67,12 @@ class ArtPiecesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_art_piece
       @art_piece = ArtPiece.find(params[:id])
-      @artist = @art_piece.artist if !@art_piece.nil?
+      set_artist
+    end
+
+    def set_artist
+      @artist = @art_piece.artist if !@art_piece.blank?
+      @artist = Artist.find(params[:artist_id]) if (@artist.blank? && !params[:artist_id].blank?)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

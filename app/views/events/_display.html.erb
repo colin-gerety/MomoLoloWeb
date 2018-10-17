@@ -1,8 +1,8 @@
 <% @event = Event.new if @event.nil? %>
-<div class="PhotoWrapper">
-
-<% if (size == 'full') %>
-<div class="Full">
+<% if (!size.blank? && (size == 'full')) %>
+  <div class="PhotoWrapper FullImage">
+<% else %>
+  <div class="PhotoWrapper">
 <% end %>
 
   <% if !@event.event_image.blank? %>
@@ -39,10 +39,6 @@
   <div class="field Description">
     <%= @event.description if !@event.description.blank?  %>
   </div>
-
-<% if (size == 'full') %>
-</div> <!--  Full -->
-<% end %>
 
   <% if (admin_signed_in?) %>
     <div class="AdminRegion">

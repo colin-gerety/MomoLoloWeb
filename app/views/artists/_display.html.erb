@@ -24,6 +24,9 @@
   <div class="AdminRegion">
     <%= link_to 'Edit Artist', edit_artist_path(@artist) %> 
   </div>
+  <div class="AdminRegion">
+    <%= link_to 'New Art Piece', new_artist_art_piece_path(@artist) %>
+  </div>
 <% end %>
 
 <% if (show_art && @artist.art_pieces.count > 0) %>
@@ -37,5 +40,4 @@
     <% end %>
   </div> <!-- ArtistPhotoDisplay -->
 <% end %>
-
 

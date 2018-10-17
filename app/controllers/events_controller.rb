@@ -138,6 +138,6 @@ helper_method :html_recurrent_event_time
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:event_start, :event_end, :title, :description, :event_image_id, :recurrence_description, :recurrence_days)
+      params.require(:event).permit(:event_start, :event_end, :title, :description, :event_image_id, :recurrence_description, :recurrence_days, :recurrent)
     end
 end

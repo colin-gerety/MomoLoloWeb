@@ -3,12 +3,10 @@
 <div id="artists" class="TopWrapper">
   <div class="PhotoFilter">
     <h1>
-      <%= @artist.name %>
+      <%= link_to @artist.name, @artist %>
     </h1>
   </div>
 </div>
 
 <%= render partial: 'art_pieces/display', locals: {current_only: false, size: 'full'} %>
-
-<div><%= link_to @artist.name, @artist %></div>
 
