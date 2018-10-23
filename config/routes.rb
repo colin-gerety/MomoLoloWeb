@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :quotes
   resources :events
   resources :event_images
   devise_for :admins

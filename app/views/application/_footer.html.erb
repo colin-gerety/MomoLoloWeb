@@ -2,6 +2,11 @@
   <div class="BigLogo" id="footerLogo">
      <a href="/" title="Momo Lolo"><span>Momo Lolo</span></a>
   </div>
+  <div class="Quote">
+    <% quote = Quote.random_quote %>
+    <span class="QuoteHtml"><%= sanitize(quote.quote_html) %></span>
+    <span class="Author"><%= quote.author %></span>
+  </div>
   <div id="socialLinks">
     <ul id="footerLinks">
       <li><a class="SocialIcon" 
