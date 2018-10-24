@@ -135,6 +135,8 @@ ActiveRecord::Schema.define(version: 2018_10_19_215520) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "art_pieces", "artists"
+  add_foreign_key "barista_photos", "baristas"
   add_foreign_key "events", "event_images"
   add_foreign_key "place_photos", "places"
 end
