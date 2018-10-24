@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<% if @current.current_artists.blank? %>
-<%   @current.current_artists.each |artist| %>
+<% if !@artists.blank? %>
+<%   @artists.each |artist| %>
        <div><%= artist.name  %></div> 
 <%   end %>
 <% end %>

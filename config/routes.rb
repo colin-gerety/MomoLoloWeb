@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   end
   root to: 'places#show', :id => 1
 
-  resources :current_art
+  get "current_art/index"
+  match('current_art/' => 'current_art#index', :via => :get)
+  match('current_art/labels' => 'current_art#labels', :via => :get)
 
   get "admin/index"
   match('admin/' => 'admin#index', :via => :get)
