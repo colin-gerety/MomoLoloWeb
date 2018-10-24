@@ -37,7 +37,7 @@
   </div>
 
   <div class="field Description">
-    <%= @event.description if !@event.description.blank?  %>
+    <%= sanitize(@event.description) if !@event.description.blank?  %>
   </div>
 
   <% if (admin_signed_in?) %>
