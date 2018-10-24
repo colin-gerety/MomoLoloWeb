@@ -1,5 +1,4 @@
 class CurrentArtController < ApplicationController
-  before_action :set_current, only: [:show]
   before_action :authenticate_admin!, :except => [:show, :index]
 
   # GET /currents
