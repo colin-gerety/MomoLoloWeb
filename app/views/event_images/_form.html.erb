@@ -12,7 +12,6 @@
     </div>
   <% end %>
 
-<div class="PhotoWrapper">
   <% if !@event_image.blank? %>
     <div>
       <%= image_tag @event_image.image_url(:thumb).to_s %>
@@ -30,11 +29,10 @@
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, class: 'Description' %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
-</div> <!-- PhotoWrapper -->
 <% end %>
