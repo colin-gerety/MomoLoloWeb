@@ -13,6 +13,10 @@
   <% end %>
 
   <div class="field">
+   <%= form.check_box :active %> <%= form.label :active %>
+  </div>
+
+  <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
@@ -21,17 +25,42 @@
     <%= form.label :description %>
     <%= form.text_area :description, id: :event_description, class: 'Description' %>
   </div>
-
-  <div class="field">
-    <%= form.label :start %>
-    <%= form.time_select :event_start %>
-  </div>
   
   <div class="field">
-    <%= form.label :end %>
-    <%= form.time_select :event_end %>
+    <span class="NoBreak"><%= form.label "Start time: " %></span>
+    <span class="NoBreak"><%= form.time_select :event_start, {minute_step: 15, ampm: true}%></span>
+    <span class="NoBreak"><%= form.label "End time: " %></span>
+    <span class="NoBreak"><%= form.time_select :event_end, {minute_step: 15, ampm: true} %></span>
   </div>
 
+  <div class="field">
+    <%= form.check_box :display_notify %>
+    <%= form.label "Notify on front page" %>
+  </div>
+  <div id="notificationFields">
+    <div class="field">
+      <%= form.label "Notification Summary" %>
+      <%= form.text_field :notify_title %>
+    </div>
+
+    <div class="field">
+      <span class="NoBreak"><%= form.label "Notification Start" %></span>
+      <span class="NoBreak">
+         <%= form.datetime_select :notify_start, {minute_step: 15, ampm: true}%>
+      </span>
+    </div>
+    <div class="field">
+      <span class="NoBreak"><%= form.label "Notification End" %></span>
+      <span class="NoBreak">
+         <%= form.datetime_select :notify_end, {minute_step: 15, ampm: true}%>
+      </span>
+    </div>
+  </div> <!-- notificationFields -->
+
+  <div class="field">
+    <%= form.check_box :display_event %>
+    <%= form.label "Include on event page" %>
+  </div>
   <div class="field">
     <%= form.radio_button :recurrent, false  %>
     <%= form.label "One Time Event" %>
@@ -54,9 +83,6 @@
   </div>
 
   <div id="recurrentEvent">
-    <div class="field">
-     <%= form.check_box :active %> <%= form.label :active %>
-    </div>
     <div class="field">
       <%= form.label "How often does the event occur?" %>
       <%= form.text_field :recurrence_description %>

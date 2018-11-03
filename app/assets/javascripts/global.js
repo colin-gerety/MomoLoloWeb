@@ -63,6 +63,16 @@ function hideLoginMenu(event) {
  event.preventDefault();
 }
 
+function adjustEventNotification(event) {
+  if ($('input[name=event\\[display_notify\\]]').is(":checked")) {
+    $('#notificationFields').removeClass("HideFields");
+    $('#notificationFields').addClass("ShowFields");
+  } else {
+    $('#notificationFields').removeClass("ShowFields");
+    $('#notificationFields').addClass("HideFields");
+  }
+}
+
 function adjustFormEventRecurrence(event) {
   var selectedField = '#recurrentEvent';
   var unSelectedField = '#nonRecurrentEvent';
@@ -75,7 +85,7 @@ function adjustFormEventRecurrence(event) {
       unSelectedField = '#recurrentEvent';
       break;
     default:
-      alert("Improper value sent to event radio button."); 
+      return; /* alert("Improper value sent to event radio button.");  */
   };
   $(selectedField).removeClass("HideFields");
   $(selectedField).addClass("ShowFields");
@@ -103,7 +113,12 @@ function onReady() {
   $("#loginMenuIcon").click(showLoginMenu);
   $("#loginMenuCancel").click(hideLoginMenu);
 
-  $('input[name=event\\[recurrent\\]]').change(adjustFormEventRecurrence);
+  if ($('input[name=event\\[recurrent\\]]')) {
+    $('input[name=event\\[recurrent\\]]').change(adjustFormEventRecurrence);
+    $('input[name=event\\[display_notify\\]]').change(adjustEventNotification);
+    adjustFormEventRecurrence(null);
+    adjustEventNotification(null);
+  }
 
   var owl = $('.owl-carousel');
   owl.owlCarousel({

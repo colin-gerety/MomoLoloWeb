@@ -47,6 +47,18 @@
   margin-left: 5em;
 }
 
+#notificationFields div.field {
+  margin-left: 5em;
+}
+
+#notificationFields.ShowFields {
+  display: block;
+}
+
+#notificationFields.HideFields {
+  display: none;
+}
+
 #recurrentEvent.ShowFields {
   display: block;
 }
@@ -62,4 +74,11 @@
 #nonRecurrentEvent.HideFields {
   display: none;
 }
+
+.PhotoWrapper .Description .HoursTable {
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bold;
+}
+
 

@@ -10,6 +10,7 @@ gem 'rmagick'
 gem 'devise'
 gem 'jquery-rails'
 gem 'owlcarousel-rails'
+gem 'rails-html-sanitizer'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'

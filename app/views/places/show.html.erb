@@ -1,4 +1,13 @@
 <p id="notice"><%= notice %></p>
+
+<% if !@notifications.blank? %>
+  <div class="PlaceNotifications">
+    <% @notifications.each do |notification| %>
+      <%= link_to notification.notify_title, notification, class: "Notification"%>
+    <% end %>
+  </div>
+<% end %>
+
 <div id="place">
 <div id="placeWrapper">
   <div id="titleSection">

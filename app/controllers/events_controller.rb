@@ -7,8 +7,14 @@ class EventsController < ApplicationController
   def index
     unit = :months
     amount = 1
-    @events = future_events(unit, amount)
-    @recurrent_events = recurrent_events()
+    @show_all = (params[:show_all] == 'true') ? true : false
+    if (admin_signed_in? && @show_all)
+      @events = all_events(unit, amount)
+      @recurrent_events = all_recurrent_events()
+    else
+      @events = future_events(unit, amount)
+      @recurrent_events = recurrent_events()
+    end
   end
 
   # GET /events/1
@@ -77,7 +83,11 @@ class EventsController < ApplicationController
       else
           active_clause = 'active = true'
       end
-      Event.where('recurrent != true').where(active_clause).where('event_start > ?', DateTime.now).where('event_end < ?', DateTime.now.advance({unit => amount})).order('event_start ASC')
+      Event.where('recurrent != true').where(active_clause).where('event_start > ?', DateTime.now).where('event_end < ?', DateTime.now.advance({unit => amount})).order(:event_start)
+    end
+
+    def all_events(unit, amount)
+      Event.where('recurrent != true').order(:active).order(event_start: :desc)
     end
 
     def recurrent_events
@@ -86,7 +96,11 @@ class EventsController < ApplicationController
       else
           active_clause = 'active = true'
       end
-      Event.where('recurrent = true').where(active_clause).order('recurrence_days ASC')
+      Event.where('recurrent = true').where(active_clause).order(:recurrence_days)
+    end
+
+    def all_recurrent_events
+      Event.where('recurrent = true').order(:active).order(:recurrence_days)
     end
 
     def format_event_date(event)
@@ -94,6 +108,29 @@ class EventsController < ApplicationController
         rv = event.event_start.strftime("%A %B %e %l:%M%P") + event.event_end.strftime(" - %l:%M%P")
       else
         rv = event.event_start.strftime("%A %B %e %l:%M%P") + event.event_end.strftime(" - %A %B %e %l:%M%P")
+      end
+      return rv
+    end
+
+    def html_notification_date(event)
+      if (event.notify_start.strftime("%Y-%m-%d") == event.notify_end.strftime("%Y-%m-%d"))
+        rv = '<div class="EventDateTime">' +
+               '<span class="Date">' +
+                 event.notify_start.strftime("%A %B %e") +
+               '</span>' +
+               '<span class="Time">' +
+                 event.notify_start.strftime("%l:%M%P") + event.notify_end.strftime(" - %l:%M%P") +
+               '</span>' +
+             '</div>'
+      else
+        rv = '<div class="EventDateTime">' +
+               'Notify From: <span class="StartDate NoBreak">' +
+                   event.notify_start.strftime("%A %B %e %l:%M%P") +
+               '</span>' +
+               'To: <span class="EndDate NoBreak">' +
+                  event.notify_end.strftime(" %A %B %e %l:%M%P") +
+               '</span>' +
+             '</div>'
       end
       return rv
     end
@@ -110,8 +147,7 @@ class EventsController < ApplicationController
                '</span>' +
             '</div>'
       else
-        rv = event.event_start.strftime("%A %B %e %l:%M%P") + event.event_end.strftime(" - %A %B %e %l:%M%P")
-             '<div class="EventDateTime">' +
+        rv = '<div class="EventDateTime">' +
                '<span class="StartDate">' +
                    event.event_start.strftime("%A %B %e %l:%M%P") +
                '</span>' +
@@ -132,12 +168,13 @@ class EventsController < ApplicationController
             '</div>'
       return rv
     end
+helper_method :html_notification_date
 helper_method :html_event_date
 helper_method :html_recurrent_event_time
 
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:event_start, :event_end, :title, :description, :event_image_id, :recurrence_description, :recurrence_days, :recurrent)
+      params.require(:event).permit(:event_start, :event_end, :active, :title, :description, :event_image_id, :recurrence_description, :recurrence_days, :recurrent, :display_notify, :display_event, :notify_title, :notify_start, :notify_end)
     end
 end

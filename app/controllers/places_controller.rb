@@ -11,6 +11,7 @@ class PlacesController < ApplicationController
   # GET /places/1.json
   def show
     @place_display_photos = @place.place_photos.where(can_display: true).order(created_at: :desc).limit(6)
+    set_notifications;
   end
 
   # GET /places/new
@@ -67,6 +68,19 @@ class PlacesController < ApplicationController
     def set_place
       @place = Place.find(params[:id])
     end
+  
+   def set_notifications() 
+     if (admin_signed_in?)
+       active_clause = '1'
+     else
+       active_clause = 'active = true'
+     end
+     @notifications = Event.where('display_notify = true').
+                            where(active_clause).
+                            where('? > notify_start', DateTime.now).
+                            where('? < notify_end', DateTime.now).
+                            order('notify_start ASC')
+  end 
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params

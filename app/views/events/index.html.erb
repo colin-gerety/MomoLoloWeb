@@ -30,7 +30,16 @@
 
 <% if admin_signed_in? %>
   <div class="AdminRegion">
+    <div>
+    <% if @show_all %>
+      <%= link_to 'Active Events', events_path %>
+    <% else %>
+      <%= link_to 'All Events', events_path(show_all: 'true') %>
+    <% end %>
+    </div>
+    <div>
     <%= link_to 'New Event', new_event_path %>
+    </div>
   </div>
 <% end %>
 

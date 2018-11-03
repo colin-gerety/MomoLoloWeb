@@ -18,6 +18,25 @@
   width: 40%;
 }
 
+.PlaceNotifications {
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
+.PlaceNotifications .Notification {
+  color: black;
+  background-color: BlanchedAlmond;
+  padding-right: .5em;
+  padding-left: .5em;
+  font-size: larger;
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+a.Notification:visited {
+  color: black;
+}
+
 #place #titleSection {
   font-size: 8vw;
   font-weight: bold;

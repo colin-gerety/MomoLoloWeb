@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_19_215520) do
+ActiveRecord::Schema.define(version: 2018_10_26_200343) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.boolean "approved", default: false, null: false
@@ -104,6 +104,11 @@ ActiveRecord::Schema.define(version: 2018_10_19_215520) do
     t.string "recurrence_description"
     t.integer "recurrence_days"
     t.boolean "active", default: true
+    t.boolean "display_notify", default: false
+    t.boolean "display_event", default: true
+    t.string "notify_title"
+    t.datetime "notify_start"
+    t.datetime "notify_end"
     t.index ["active"], name: "index_events_on_active"
     t.index ["event_image_id"], name: "index_events_on_event_image_id"
   end

@@ -17,6 +17,10 @@
     </div>
   <% end %>
 
+ <h2 class="field EventTitle">
+    <%= @event.title %>
+ </h2>
+
 <% if @event.recurrent == true %>
   <div class="field EventDate">
     <div class="RecurrenceDescription">
@@ -32,13 +36,20 @@
   </div>
 <% end %>
 
-  <div class="field EventTitle">
-     <%= @event.title %>
+  <div class="field Description">
+    <%= sanitize(@event.description, tags: Loofah::HTML5::WhiteList::ALLOWED_ELEMENTS) if !@event.description.blank?  %>
   </div>
 
-  <div class="field Description">
-    <%= sanitize(@event.description) if !@event.description.blank?  %>
-  </div>
+  <% if (@event.display_notify == true && admin_signed_in?) %>
+    <div class="AdminRegion">
+      <div class="field EventTitle">
+         <span class="label">Notify on Front Page: </span> <%= @event.notify_title %>
+      </div>
+      <div class="field EventDate">
+          <%= sanitize(html_notification_date(@event)) %>
+      </div> <!-- EventDate -->
+    </div>
+  <% end %>
 
   <% if (admin_signed_in?) %>
     <div class="AdminRegion">
