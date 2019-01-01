@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   resources :events
   resources :event_images
   devise_for :admins
-  # resources :admins
+  resources :admins
+
   resources :artists do
     resources :art_pieces
   end
