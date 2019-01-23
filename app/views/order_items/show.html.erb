@@ -1,0 +1,19 @@
+<div class="AdminPage">
+<p id="notice"><%= notice %></p>
+
+<div id="order_item" class="TopWrapper">
+  <div class="PhotoFilter">
+    <h1><%= @order_item.name %></h1>
+  </div>
+</div> <!-- TopWrapper -->
+
+<%= render partial: 'order_items/display', locals: {main_display: true} %>
+
+<div class=ActionButtons>
+<%= link_to 'New Item', new_order_item_path %> |
+
+<%= link_to 'Edit', edit_order_item_path(@order_item) %> |
+<%= link_to 'Show Suppliers', suppliers_path %> |
+<%= link_to 'Show Items', order_items_path %>
+</div>
+

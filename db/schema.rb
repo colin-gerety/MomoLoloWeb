@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_26_200343) do
+ActiveRecord::Schema.define(version: 2019_01_18_221429) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.boolean "approved", default: false, null: false
@@ -84,6 +84,20 @@ ActiveRecord::Schema.define(version: 2018_10_26_200343) do
     t.string "tag_line"
   end
 
+  create_table "contacts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "contact_type"
+    t.string "phone"
+    t.string "email"
+    t.text "address"
+    t.text "notes"
+    t.bigint "supplier_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "url"
+    t.index ["supplier_id"], name: "index_contacts_on_supplier_id"
+  end
+
   create_table "event_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -113,6 +127,15 @@ ActiveRecord::Schema.define(version: 2018_10_26_200343) do
     t.index ["event_image_id"], name: "index_events_on_event_image_id"
   end
 
+  create_table "order_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "category"
+    t.string "item_id"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "place_photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "image"
     t.string "title"
@@ -140,6 +163,29 @@ ActiveRecord::Schema.define(version: 2018_10_26_200343) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "supplier_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "supplier_id"
+    t.integer "order_item_id"
+    t.integer "rank", default: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "note"
+  end
+
+  create_table "suppliers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.text "order_info"
+    t.string "delivery_type"
+    t.string "payment_type"
+    t.text "notes"
+    t.boolean "maintains_stock"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "art_pieces", "artists"
+  add_foreign_key "barista_photos", "baristas"
+  add_foreign_key "contacts", "suppliers"
   add_foreign_key "events", "event_images"
   add_foreign_key "place_photos", "places"
 end

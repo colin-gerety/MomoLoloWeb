@@ -1,0 +1,32 @@
+<% if (!main_display) %>
+<div class="PhotoWrapper">
+  <span class="label">Item Name: </span><%= link_to @order_item.name, order_item_path(@order_item) %>
+<% end %>
+
+  <% if (!@order_item.description.blank?) %>
+    <div class="field">
+      <span class="label">Description: </span>
+      <%= @order_item.description %>
+    </div>
+  <% end %>
+
+  <% if (!@order_item.category.blank?) %>
+    <div class="field">
+      <span class="label">Category: </span>
+      <%= @order_item.category %>
+    </div>
+  <% end %>
+
+<h3>Suppliers</h3>
+<% @order_item.supplier_items.order(:rank).each do |si| %>
+  <div>
+    <div><%= si.rank %>) <%= link_to si.supplier.name, si.supplier %></div>
+    <% if (main_display && !si.note.blank?) %>
+      <div class="SupplierNote"><span class="label">Note: </span> <%= si.note %></div>
+    <% end %>
+  </div>
+<% end %>
+
+<% if (!main_display) %>
+</div> <!-- PhotoWrapper -->
+<% end %>

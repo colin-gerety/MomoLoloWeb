@@ -1,0 +1,91 @@
+<%= form_with(model: supplier, local: true) do |form| %>
+  <% if supplier.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(supplier.errors.count, "error") %> prohibited this supplier from being saved:</h2>
+
+      <ul>
+      <% supplier.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :order_info %>
+    <%= form.text_area :order_info %>
+  </div>
+
+  <div class="field">
+    <%= form.label :delivery_type %>
+    <%= form.text_field :delivery_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :payment_type %>
+    <%= form.text_field :payment_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :notes %>
+    <%= form.text_area :notes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :maintains_stock %>
+    <%= form.check_box :maintains_stock %>
+  </div>
+
+<h1>Contacts</h1>
+<div class="PhotoList">
+  <%= form.fields_for :contacts do |contact_form| %>
+   <div class="PhotoWrapper">
+      <span class="label"><%= contact_form.object.name.blank? ? "Add Contact" : ""%></span>
+      <div class="field">
+        <%= contact_form.label :name %>
+        <%= contact_form.text_field :name %>
+      </div>
+    
+      <div class="field">
+        <%= contact_form.label :contact_type %>
+        <%= contact_form.text_field :contact_type %>
+      </div>
+    
+      <div class="field">
+        <%= contact_form.label :phone %>
+        <%= contact_form.text_field :phone %>
+      </div>
+    
+      <div class="field">
+        <%= contact_form.label :email %>
+        <%= contact_form.text_field :email %>
+      </div>
+    
+      <div class="field">
+        <%= contact_form.label :url %>
+        <%= contact_form.text_field :url %>
+      </div>
+    
+      <div class="field">
+        <%= contact_form.label :address %>
+        <%= contact_form.text_area :address %>
+      </div>
+      <% if !contact_form.object.name.blank? %>
+        <div class='field'>
+          <%= contact_form.check_box :_destroy %>
+          <span class="label">Remove Contact</span>
+         </div>
+      <% end %>
+    </div> <!-- PhotoWrapper -->
+  <% end %> <!-- fields_for contacts -->
+</div> <!-- PhotoList -->
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

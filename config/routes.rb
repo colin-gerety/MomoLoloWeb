@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :order_items
+  resources :contacts
+  resources :suppliers
+  match('order_item/autocomplete' => 'order_items#autocomplete', :via => :get, :as => 'item_autocomplete')
+  match('supplier/autocomplete' => 'suppliers#autocomplete', :via => :get, :as => 'supplier_autocomplete')
+
+
   resources :quotes
   resources :events
   resources :event_images

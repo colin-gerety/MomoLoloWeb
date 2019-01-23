@@ -1,0 +1,21 @@
+// Place all the styles related to the order_items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#order_item.TopWrapper {
+  background-image: url(asset-path('order_items.jpg'));
+
+  background-color: rgba(0,0,0, 0.87);
+}
+
+#order_item.TopWrapper .PhotoFilter {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0, 0.15);
+}
+
+.SupplierNote {
+  margin-left: 2em;
+}
+
+

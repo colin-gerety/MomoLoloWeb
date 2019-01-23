@@ -21,6 +21,10 @@
       <li><%= link_to "Upcoming Events", events_path  %></li>
       <li><%= link_to "Art in Our Shop", current_art_index_path %></li>
       <li><%= link_to "Meet our Baristas", baristas_path %></li>
+      <% if admin_signed_in? %>
+        <li><span class="AdminRegion"><%= link_to "Ordering", suppliers_path %></span></li>
+
+      <% end %>
       <!-- li><a href=#">What People Are Saying</a></li -->
     </ul>
   </nav>

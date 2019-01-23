@@ -1,0 +1,26 @@
+<div class="AdminPage">
+<p id="notice"><%= notice %></p>
+
+<div id="order_item" class="TopWrapper">
+  <div class="PhotoFilter">
+    <h1>Supplies</h1>
+  </div>
+</div> <!-- TopWrapper -->
+
+<%= render partial: 'suppliers/supplier_search'  %>
+<%= render partial: 'order_items/item_search'  %>
+
+<div class="PhotoList">
+  <% @order_items.each do |order_item| %>
+    <% @order_item = order_item %>
+    <%= render partial: 'order_items/display', locals: {main_display: false} %>
+  <% end %>
+</div>
+
+<div class="ActionButtons">
+<%= link_to 'New Supply', new_order_item_path %> |
+<%= link_to 'Show All Supplies', order_items_path %> | 
+<%= link_to 'Show Suppliers', suppliers_path %> 
+</div>
+
+</div>

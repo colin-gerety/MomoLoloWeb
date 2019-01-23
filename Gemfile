@@ -9,6 +9,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'devise'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'owlcarousel-rails'
 gem 'rails-html-sanitizer'
 

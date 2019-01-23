@@ -1,0 +1,3 @@
+class SupplierItemsController < ApplicationController
+
+end

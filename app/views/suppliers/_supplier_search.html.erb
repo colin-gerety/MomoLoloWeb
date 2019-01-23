@@ -1,0 +1,10 @@
+  <div id="supplier_search_wrapper">
+    <%= form_tag(suppliers_path, method: "get", id: 'supplier_search') do %>
+      <%= label_tag(:supplier_name, "Search for suppliers:") %>
+      <%= text_field_tag(:supplier_name, nil, placeholder: 'Enter name...', 
+                        autocomplete: 'on',
+                        data: {autocomplete_source: supplier_autocomplete_path}) %>
+      <%= submit_tag("Search") %>
+    <% end %>
+  </div> <!--  item_search -->
+

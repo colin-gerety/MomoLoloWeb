@@ -1,0 +1,46 @@
+<div class="PhotoWrapper">
+
+<% if (!@contact.name.blank?) %>
+  <div class="field">
+    <span class="label">Contact Name: </span>
+    <%= link_to @contact.name, edit_contact_path(@contact) %> 
+
+  </div>
+<% end %>
+
+<% if (!@contact.contact_type.blank?) %>
+  <div class="field">
+    <span class="label">Contact Type: </span>
+    <%= @contact.contact_type %>
+  </div>
+<% end %>
+
+<% if (!@contact.phone.blank?) %>
+  <div class="field">
+    <span class="label">Phone: </span>
+    <%= @contact.phone %>
+  </div>
+<% end %>
+
+<% if (!@contact.email.blank?) %>
+  <div class="field">
+    <span class="label">Email: </span>
+    <%= mail_to @contact.email %>
+  </div>
+<% end %>
+
+<% if (!@contact.url.blank?) %>
+  <div class="field">
+    <span class="label">Web Site: </span>
+    <%= link_to @contact.url @content_url %>
+  </div>
+<% end %>
+
+<% if (!@contact.address.blank?) %>
+  <div class="field">
+    <span class="label">Address: </span>
+    <%= @contact.address %>
+  </div>
+<% end %>
+
+</div>

@@ -418,6 +418,10 @@ main {
   background-color: rgba(240,255,240, .9);
 }
 
+div.ActionButtons {
+  margin-top: 1em;
+}
+
 footer {
   clear: both;
   background-color: #fafafa;
@@ -469,6 +473,10 @@ footer p {
   padding-top: 1em;
   padding-bottom: 1em;
   text-align: left;
+}
+
+.label {
+  font-weight: bold;
 }
 
 form .Description {

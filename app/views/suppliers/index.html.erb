@@ -1,0 +1,24 @@
+<div class="AdminPage">
+  <p id="notice"><%= notice %></p>
+
+  <div id="suppliers" class="TopWrapper">
+    <div class="PhotoFilter">
+      <h1>Momo Lolo Suppliers</h1>
+    </div>
+  </div> <!-- TopWrapper -->
+
+  <%= render partial: 'suppliers/supplier_search'  %>
+  <%= render partial: 'order_items/item_search'  %>
+
+  <div class="PhotoList"> 
+    <% @suppliers.each do |supplier| %>
+      <% @supplier = supplier %>
+      <%= render partial: 'suppliers/display', locals: {main_display: false} %>
+    <% end %>
+  </div>
+
+  <div class="ActionButtons">
+    <%= link_to 'New Supplier', new_supplier_path %>
+    <%= link_to 'All Suppliers', suppliers_path %>
+  </div>
+</div>

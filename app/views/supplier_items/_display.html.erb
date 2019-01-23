@@ -1,0 +1,30 @@
+<div class="PhotoWrapper">
+
+<div class="field">
+  <span class="label">Item Name: </span>
+  <%= link_to  @order_item.name, order_item_path(@order_item) %>
+</div>
+
+<% if (!@supplier_item.note.blank?) %>
+  <div class="field">
+    <span class="label">Supplier Notes: </span>
+    <%= @supplier_item.note %>
+  </div>
+<% end %>
+
+<% if (!@order_item.description.blank?) %>
+  <div class="field">
+    <span class="label">Description: </span>
+    <%= @order_item.description %>
+  </div>
+<% end %>
+
+<% if (!@order_item.category.blank?) %>
+  <div class="field">
+    <span class="label">Category: </span>
+    <%= @order_item.category %>
+  </div>
+<% end %>
+
+</div>
+

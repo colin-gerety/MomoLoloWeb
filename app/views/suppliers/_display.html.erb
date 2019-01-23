@@ -1,0 +1,39 @@
+<% if (!main_display) %>
+<div class="PhotoWrapper">
+  <span class="label">Supplier: </span><%= link_to @supplier.name, supplier_path(@supplier) %>
+<% end %>
+
+  <% if (!@supplier.order_info.blank? && @supplier.maintains_stock) %>
+    <div class="field">
+      <span class="label">Supplier Maintains Stock </span>
+    </div>
+  <% end %>
+
+  <% if (!@supplier.order_info.blank?) %>
+    <div class="field">
+      <span class="label">Order Information: </span><%= @supplier.order_info %>
+    </div>
+  <% end %>
+
+  <% if (!@supplier.delivery_type.blank?) %>
+    <div class="field">
+      <span class="label">Delivery: </span><%= @supplier.delivery_type %>
+    </div>
+  <% end %>
+
+  <% if (!@supplier.payment_type.blank?) %>
+    <div class="field">
+      <span class="label">Payment: </span><%= @supplier.payment_type %>
+    </div>
+  <% end %>
+
+  <% if (!@supplier.notes.blank?) %>
+    <div class="field">
+      <span class="label">Notes: </span><%= @supplier.notes %>
+    </div>
+  <% end %>
+
+<% if (!main_display) %>
+</div> <!-- PhotoWrapper -->
+<% end %>
+

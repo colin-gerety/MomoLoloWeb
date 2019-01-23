@@ -1,0 +1,40 @@
+<div class="AdminPage">
+<p id="notice"><%= notice %></p>
+
+<div id="suppliers" class="TopWrapper">
+  <div class="PhotoFilter">
+    <h1><%= @supplier.name %></h1>
+  </div>
+</div> <!-- TopWrapper -->
+
+<%= render partial: 'suppliers/display', locals: {main_display: true} %>
+
+<% if (@supplier.contacts.count > 0) %>
+  <h2>Contacts</h2>
+  <div class="PhotoList">
+    <% @supplier.contacts.order(:name).each do |contact| %>
+       <% @contact = contact %>
+       <%= render partial: 'contacts/display'  %>
+    <% end %>
+  </div> <!-- Contacts -->
+<% end %>
+
+
+<% if (@supplier.order_items.count > 0) %>
+  <h2>Items</h2>
+  <div class="PhotoList">
+    <% @supplier.supplier_items.each do |supplier_item| %>
+       <% @supplier_item = supplier_item %>
+       <% @order_item = supplier_item.order_item %>
+       <%= render partial: 'supplier_items/display'  %>
+    <% end %>
+  </div> <!-- Contacts -->
+<% end %>
+
+
+<div class="ActionButtons">
+  <%= link_to 'New Item', new_order_item_path %> |
+  <%= link_to 'Edit', edit_supplier_path(@supplier) %> |
+  <%= link_to 'Show Suppliers', suppliers_path %>
+</div>
+</div>
