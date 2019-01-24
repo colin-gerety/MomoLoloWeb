@@ -32,7 +32,7 @@
 <% if (!@contact.url.blank?) %>
   <div class="field">
     <span class="label">Web Site: </span>
-    <%= link_to @contact.url @content_url %>
+    <%= link_to @contact.url, @contact.url, target: "_blank" %>
   </div>
 <% end %>
 
