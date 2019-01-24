@@ -11,8 +11,12 @@
   background-image: url(asset-path('sparkler.jpg'));
 }
 
-#eventIndex h1, #eventIndex h2, #eventIndex h3{
+#eventIndex h1, #eventIndex h2, #eventIndex h3 {
   color: white;
+}
+
+#eventIndex .PhotoWrapper h1, #eventIndex .PhotoWrapper h2, #eventIndex .PhotoWrapper h3 {
+  color: black;
 }
 
 #eventIndex  .PhotoFilter {
