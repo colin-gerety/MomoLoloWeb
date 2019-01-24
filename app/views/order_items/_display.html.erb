@@ -3,6 +3,13 @@
   <span class="label">Item Name: </span><%= link_to @order_item.name, order_item_path(@order_item) %>
 <% end %>
 
+  <% if (!@order_item.item_id.blank?) %>
+    <div class="field">
+      <span class="label">Item: </span>
+      <%= @order_item.item_id %>
+    </div>
+  <% end %>
+
   <% if (!@order_item.description.blank?) %>
     <div class="field">
       <span class="label">Description: </span>
