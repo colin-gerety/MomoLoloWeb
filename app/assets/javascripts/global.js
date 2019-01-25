@@ -106,12 +106,23 @@ function resizeHandler(event) {
  $("#menuList").removeClass("HideMenuList");
 }
 
+function ready_autocomplete() {
+  $('#item_name').autocomplete({
+    source: $('#item_name').data('autocomplete-source')  
+   });
+  $('#supplier_name').autocomplete({
+    source: $('#supplier_name').data('autocomplete-source')  
+   });
+}
+
 function onReady() {
   $("#mobileWrapper").click(showMobileMenu);
   $("#mobileMenuCancel").click(hideMobileMenu);
   $(window).resize(resizeHandler);
   $("#loginMenuIcon").click(showLoginMenu);
   $("#loginMenuCancel").click(hideLoginMenu);
+
+  ready_autocomplete();
 
   if ($('input[name=event\\[recurrent\\]]')) {
     $('input[name=event\\[recurrent\\]]').change(adjustFormEventRecurrence);
