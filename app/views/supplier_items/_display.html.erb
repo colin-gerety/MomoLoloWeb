@@ -12,6 +12,13 @@
   </div>
 <% end %>
 
+<% if (!@order_item.item_id.blank?) %>
+  <div class="field">
+    <span class="label">Specific Item: </span>
+    <%= @order_item.item_id %>
+  </div>
+<% end %>
+
 <% if (!@order_item.description.blank?) %>
   <div class="field">
     <span class="label">Description: </span>
