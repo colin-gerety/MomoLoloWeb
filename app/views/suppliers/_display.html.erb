@@ -3,7 +3,7 @@
   <span class="label">Supplier: </span><%= link_to @supplier.name, supplier_path(@supplier) %>
 <% end %>
 
-  <% if (!@supplier.order_info.blank? && @supplier.maintains_stock) %>
+  <% if (@supplier.maintains_stock) %>
     <div class="field">
       <span class="label">Supplier Maintains Stock </span>
     </div>
