@@ -1,4 +1,6 @@
 class OrderItem < ApplicationRecord
+  default_scope { order(name: :asc) }
+
   has_many :supplier_items
   has_many :suppliers, through: :supplier_items
 

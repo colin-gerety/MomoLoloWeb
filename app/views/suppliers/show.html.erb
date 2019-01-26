@@ -23,9 +23,9 @@
 <% if (@supplier.order_items.count > 0) %>
   <h2>Items</h2>
   <div class="PhotoList">
-    <% @supplier.supplier_items.each do |supplier_item| %>
-       <% @supplier_item = supplier_item %>
-       <% @order_item = supplier_item.order_item %>
+    <% @supplier.order_items.each do |order_item| %>
+       <% @supplier_item = SupplierItem.where(supplier: @supplier, order_item: order_item).first %>
+       <% @order_item = order_item %>
        <%= render partial: 'supplier_items/display'  %>
     <% end %>
   </div> <!-- Contacts -->
