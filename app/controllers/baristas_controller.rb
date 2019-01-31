@@ -21,10 +21,12 @@ class BaristasController < ApplicationController
   # GET /baristas/new
   def new
     @barista = Barista.new
+    @barista.barista_photos.build
   end
 
   # GET /baristas/1/edit
   def edit
+    @barista.barista_photos.build
   end
 
   # POST /baristas
@@ -76,6 +78,6 @@ class BaristasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def barista_params
-      params.require(:barista).permit(:first, :last, :currently_working, :tag_line)
+      params.require(:barista).permit(:first, :last, :currently_working, :tag_line, barista_photos_attributes: [:_destroy, :id, :image, :title, :note, :can_display, :primary_photo, :barista_id])
     end
 end

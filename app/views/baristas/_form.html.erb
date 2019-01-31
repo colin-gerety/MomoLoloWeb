@@ -13,40 +13,65 @@
 
   <div class="field">
     <%= form.label :first %>
-    <%= form.text_field :first, id: :barista_first %>
+    <%= form.text_field :first %>
   </div>
 
   <div class="field">
     <%= form.label :last %>
-    <%= form.text_field :last, id: :barista_last %>
+    <%= form.text_field :last %>
   </div>
 
   <div class="field TextArea">
     <%= form.label :tag_line %>
-    <%= form.text_area :tag_line, id: :tag_line %>
+    <%= form.text_area :tag_line %>
   </div>
 
   <div class="field">
+    <div><%= @barista.currently_working ? "Working" : "NOT Working" %></div>
     <%= form.label :currently_working %>
-    <%= form.check_box :currently_working, id: :barista_currently_working %>
+    <%= form.check_box :currently_working %>
   </div>
 
-  <% if !@barista.id.blank? %>
-    <h1>Photos:</h1>
-    <div class="NewPhotoLink">
-      <%= link_to 'Edit Barista Photos', barista_barista_photos_url(@barista) %>
-    </div>
-    <% if @barista.barista_photos.count > 0 %>
-      <div class="PhotoList">
-        <% @barista.barista_photos.each do |photo| %>
-          <div class="PhotoWrapper">
-            <% @barista_photo = photo %>
-            <%= render partial: 'barista_photos/display', locals: {barista_summary: false} %>
-          </div> <!-- barista photo -->
+  <h1>Photos:</h1>
+  <div class="PhotoList">
+    <%= form.fields_for :barista_photos do |photo_form| %>
+      <div class="PhotoWrapper">
+        <% if !photo_form.object.image.blank? %>
+           <%= image_tag photo_form.object.image_url(:thumb).to_s %>
+        <% else %>
+          <div class="field">
+            <%= photo_form.label "Add New Photo" %>
+            <%= photo_form.file_field :image %>
+          </div>
         <% end %>
-      </div> <!-- EditPhotoList -->
+        <div class="field">
+          <%= photo_form.label :title %>
+          <%= photo_form.text_field :title %>
+        </div>
+      
+        <div class="field">
+          <%= photo_form.label :note %>
+          <%= photo_form.text_field :note %>
+        </div>
+      
+        <div class="field">
+          <%= photo_form.check_box :can_display %>
+          <%= photo_form.label :can_display %>
+        </div>
+      
+        <div class="field">
+          <%= photo_form.check_box :primary_photo %>
+          <%= photo_form.label "Primary (should be square)" %>
+        </div>
+        <% if !photo_form.object.image.blank? %>
+          <div class='field'>
+            <%= photo_form.check_box :_destroy %>
+            <span class="label">Delete photo</span>
+          </div>
+        <% end %>
+      </div> <!-- PhotoWrapper -->
     <% end %>
-  <% end %>
+  </div> <!-- PhotoList -->
 
   <div class="actions">
     <%= form.submit %>

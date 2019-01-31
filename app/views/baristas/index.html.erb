@@ -7,9 +7,11 @@
 
 <div class="PhotoList BaristaSummary">
   <% @baristas.each do |barista| %>
-     <% @barista = barista %>
-     <% @barista_photo = barista.primary_photo %>
-     <%= render partial: 'barista_photos/display', locals: {barista_summary: true} %>
+     <% if barista.currently_working || admin_signed_in? %>
+       <% @barista = barista %>
+       <% @barista_photo = barista.primary_photo %>
+       <%= render partial: 'barista_photos/display', locals: {barista_summary: true} %>
+    <% end %>
   <% end %>
 
 </div> <!-- PhotoList -->

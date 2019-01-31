@@ -1,4 +1,7 @@
 <div class="PhotoWrapper">
+  <% if !@barista.currently_working && admin_signed_in? %>
+    <div class="AdminRegion">
+  <% end %>
   <% if !@barista_photo.blank? %>
     <div class="ImageDisplay">
       <div>
@@ -25,5 +28,7 @@
        <div><%= @barista_photo.title %></div>
     <% end %>
   <% end %>
-
+  <% if !@barista.currently_working && admin_signed_in? %>
+    </div> <!-- AdminRegion -->
+  <% end %>
 </div> <!-- PhotoWrapper -->

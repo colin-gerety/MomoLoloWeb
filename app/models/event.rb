@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :event_image
 
-  accepts_nested_attributes_for :event_image, reject_if: proc {|attributes| attributes[:first].blank || attributes[:last].blank?}
+  accepts_nested_attributes_for :event_image, reject_if: proc {|attributes| attributes[:first].blank? || attributes[:last].blank?}
 
   def format_event_dateXXX()
     if (event_start.strftime("%Y-%m-%d") == event_end.strftime("%Y-%m-%d"))

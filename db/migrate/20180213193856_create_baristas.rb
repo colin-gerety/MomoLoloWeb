@@ -3,7 +3,7 @@ class CreateBaristas < ActiveRecord::Migration[5.2]
     create_table :baristas do |t|
       t.string :first
       t.string :last
-      t.boolean :currently_working
+      t.boolean :currently_working, :default => true
 
       t.timestamps
     end
